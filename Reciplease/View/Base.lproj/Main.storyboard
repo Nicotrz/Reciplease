@@ -75,7 +75,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zmg-bh-FtC">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmg-bh-FtC">
                                         <rect key="frame" x="10" y="90" width="355" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Lemon, Cheese, Sausages,..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TDn-3s-euc">
@@ -83,6 +83,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="addIngredient:" destination="aQ6-x4-RlJ" eventType="primaryActionTriggered" id="hWV-cc-6q1"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Li-T3-iwz">
                                                 <rect key="frame" x="315" y="0.0" width="40" height="30"/>
@@ -93,6 +96,9 @@
                                                 <state key="normal" title="Add">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="addIngredient:" destination="aQ6-x4-RlJ" eventType="touchUpInside" id="cGf-cn-Y76"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -104,6 +110,7 @@
                                     <constraint firstItem="JbO-L1-vDG" firstAttribute="top" secondItem="vSM-P5-rx0" secondAttribute="top" constant="10" id="QE1-ks-zKt"/>
                                     <constraint firstItem="JbO-L1-vDG" firstAttribute="centerX" secondItem="vSM-P5-rx0" secondAttribute="centerX" id="QKK-Xe-rwT"/>
                                     <constraint firstAttribute="trailing" secondItem="zmg-bh-FtC" secondAttribute="trailing" constant="10" id="lgc-B1-8PW"/>
+                                    <constraint firstAttribute="bottom" secondItem="zmg-bh-FtC" secondAttribute="bottom" constant="10" id="tO2-un-G1E"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your ingredients :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLw-V7-gNd">
@@ -121,6 +128,9 @@
                                 <state key="normal" title="Clear">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="clearList:" destination="aQ6-x4-RlJ" eventType="touchUpInside" id="StZ-bA-gef"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKi-ne-iTQ">
                                 <rect key="frame" x="20" y="270" width="335" height="399"/>
@@ -138,6 +148,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="searchRecipes:" destination="aQ6-x4-RlJ" eventType="touchUpInside" id="hyF-kW-VfA"/>
                                     <segue destination="xSh-ZE-NJu" kind="show" id="xOb-VX-NJv"/>
                                 </connections>
                             </button>
@@ -165,6 +176,10 @@
                     <navigationItem key="navigationItem" title="Reciplease" largeTitleDisplayMode="always" id="eaw-fm-Tsf">
                         <barButtonItem key="backBarButtonItem" title="Back" id="GrT-ia-aGF"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ingredientListTextView" destination="hKi-ne-iTQ" id="i5F-Kg-9Qc"/>
+                        <outlet property="ingredientTextField" destination="TDn-3s-euc" id="uK7-EB-doN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSi-6H-2HN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

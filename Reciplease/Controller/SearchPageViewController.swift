@@ -10,4 +10,45 @@ import UIKit
 
 class SearchPageViewController: UIViewController {
 
+    @IBOutlet weak var ingredientTextField: UITextField!
+    @IBOutlet weak var ingredientListTextView: UITextView!
+
+    override func viewDidLoad() {
+        refreshList()
+        super.viewDidLoad()
+    }
+
+    @IBAction func addIngredient(_ sender: Any) {
+        dismissKeyboard()
+        guard ingredientTextField.text != "" else {
+            showAlertMessage(error: "Please type an ingredient first!")
+            return
+        }
+        Ingredients.shared.addIngredient(toadd: ingredientTextField.text!)
+        ingredientTextField.text = ""
+        refreshList()
+    }
+
+    @IBAction func clearList(_ sender: Any) {
+        Ingredients.shared.resetIngredients()
+        refreshList()
+    }
+
+    @IBAction func searchRecipes(_ sender: Any) {
+    }
+
+    private func dismissKeyboard() {
+        ingredientTextField.resignFirstResponder()
+    }
+
+    private func refreshList() {
+        ingredientListTextView.text = Ingredients.shared.getIngredients()
+    }
+
+    private func showAlertMessage(error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
 }
