@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		06C52F632294752000FE904E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F622294752000FE904E /* AppDelegate.swift */; };
-		06C52F652294752000FE904E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F642294752000FE904E /* ViewController.swift */; };
 		06C52F682294752000FE904E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06C52F662294752000FE904E /* Main.storyboard */; };
 		06C52F6B2294752000FE904E /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F692294752000FE904E /* Reciplease.xcdatamodeld */; };
 		06C52F6D2294752100FE904E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06C52F6C2294752100FE904E /* Assets.xcassets */; };
 		06C52F702294752100FE904E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06C52F6E2294752100FE904E /* LaunchScreen.storyboard */; };
 		06C52F7B2294752100FE904E /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F7A2294752100FE904E /* RecipleaseTests.swift */; };
+		06C52F8A229485B400FE904E /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F89229485B400FE904E /* SearchPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +29,6 @@
 /* Begin PBXFileReference section */
 		06C52F5F2294752000FE904E /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C52F622294752000FE904E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		06C52F642294752000FE904E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		06C52F672294752000FE904E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06C52F6A2294752000FE904E /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		06C52F6C2294752100FE904E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +37,7 @@
 		06C52F762294752100FE904E /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C52F7A2294752100FE904E /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
 		06C52F7C2294752100FE904E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06C52F89229485B400FE904E /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +79,11 @@
 		06C52F612294752000FE904E /* Reciplease */ = {
 			isa = PBXGroup;
 			children = (
+				06C52F872294763100FE904E /* Controller */,
+				06C52F862294762C00FE904E /* View */,
+				06C52F852294762300FE904E /* Model */,
 				06C52F622294752000FE904E /* AppDelegate.swift */,
-				06C52F642294752000FE904E /* ViewController.swift */,
-				06C52F662294752000FE904E /* Main.storyboard */,
-				06C52F6C2294752100FE904E /* Assets.xcassets */,
-				06C52F6E2294752100FE904E /* LaunchScreen.storyboard */,
 				06C52F712294752100FE904E /* Info.plist */,
-				06C52F692294752000FE904E /* Reciplease.xcdatamodeld */,
 			);
 			path = Reciplease;
 			sourceTree = "<group>";
@@ -99,6 +97,32 @@
 			path = RecipleaseTests;
 			sourceTree = "<group>";
 		};
+		06C52F852294762300FE904E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06C52F692294752000FE904E /* Reciplease.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		06C52F862294762C00FE904E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06C52F662294752000FE904E /* Main.storyboard */,
+				06C52F6E2294752100FE904E /* LaunchScreen.storyboard */,
+				06C52F6C2294752100FE904E /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		06C52F872294763100FE904E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				06C52F89229485B400FE904E /* SearchPageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,6 +133,7 @@
 				06C52F5B2294752000FE904E /* Sources */,
 				06C52F5C2294752000FE904E /* Frameworks */,
 				06C52F5D2294752000FE904E /* Resources */,
+				06C52F88229476BC00FE904E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -195,13 +220,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		06C52F88229476BC00FE904E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		06C52F5B2294752000FE904E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06C52F8A229485B400FE904E /* SearchPageViewController.swift in Sources */,
 				06C52F6B2294752000FE904E /* Reciplease.xcdatamodeld in Sources */,
-				06C52F652294752000FE904E /* ViewController.swift in Sources */,
 				06C52F632294752000FE904E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
