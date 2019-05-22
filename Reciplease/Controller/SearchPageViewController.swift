@@ -19,7 +19,6 @@ class SearchPageViewController: UIViewController {
     }
 
     @IBAction func addIngredient(_ sender: Any) {
-        dismissKeyboard()
         guard ingredientTextField.text != "" else {
             showAlertMessage(error: "Please type an ingredient first!")
             return
@@ -39,6 +38,10 @@ class SearchPageViewController: UIViewController {
 
     private func dismissKeyboard() {
         ingredientTextField.resignFirstResponder()
+    }
+
+    @IBAction func tapScreen(_ sender: Any) {
+        dismissKeyboard()
     }
 
     private func refreshList() {

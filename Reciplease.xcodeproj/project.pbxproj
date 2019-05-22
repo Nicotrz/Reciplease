@@ -15,6 +15,7 @@
 		06C52F7B2294752100FE904E /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F7A2294752100FE904E /* RecipleaseTests.swift */; };
 		06C52F8A229485B400FE904E /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F89229485B400FE904E /* SearchPageViewController.swift */; };
 		06C52F8C229489F300FE904E /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F8B229489F300FE904E /* Ingredients.swift */; };
+		06C52F922295CF7A00FE904E /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F912295CF7A00FE904E /* SearchResultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		06C52F7C2294752100FE904E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06C52F89229485B400FE904E /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
 		06C52F8B229489F300FE904E /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
+		06C52F912295CF7A00FE904E /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				06C52F89229485B400FE904E /* SearchPageViewController.swift */,
+				06C52F912295CF7A00FE904E /* SearchResultViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			files = (
 				06C52F8C229489F300FE904E /* Ingredients.swift in Sources */,
 				06C52F8A229485B400FE904E /* SearchPageViewController.swift in Sources */,
+				06C52F922295CF7A00FE904E /* SearchResultViewController.swift in Sources */,
 				06C52F6B2294752000FE904E /* Reciplease.xcdatamodeld in Sources */,
 				06C52F632294752000FE904E /* AppDelegate.swift in Sources */,
 			);
