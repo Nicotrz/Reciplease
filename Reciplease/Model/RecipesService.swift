@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class RecipesService {
 
@@ -15,7 +16,8 @@ class RecipesService {
     // Differents return of ErrorCase possibles
     enum ErrorCase {
         case requestSuccessfull
-        case alreadyRefreshed
+        case responseInvalid
+        case decodableInvalid
         case networkError
     }
 
@@ -59,6 +61,7 @@ class RecipesService {
         guard let resultKey = dict["app_key"] as? String else {
             return ""
         }
+        print("app key: \(resultKey)")
         return resultKey
     }
 
@@ -73,18 +76,15 @@ class RecipesService {
         guard let resultKey = dict["app_id"] as? String else {
             return ""
         }
+        print("app id: \(resultKey)")
         return resultKey
     }
 
     // MARK: Private methods
 
     // Creating the request from the URL with accessKey
-    private func createRecipeRequest(withRequest request: String) -> URLRequest {
-        let newRequestURL = "\(requestURL)?app_id=\(appId)&app_key=app_key&q=\(request)"
-        let changeUrl = URL(string: newRequestURL)!
-        var request = URLRequest(url: changeUrl)
-        request.httpMethod = "GET"
-        return request
+    private func createRecipeRequest(withRequest request: String) -> String {
+        return "\(requestURL)?app_id=\(appId)&app_key=\(appKey)&q=\(request)"
     }
 
     // MARK: Public methods
@@ -100,25 +100,5 @@ class RecipesService {
     // This method send the result to the rates variable
     func requestRecipes(callback: @escaping (ErrorCase, String?) -> Void) {
         let request = createRecipeRequest(withRequest: "apple")
-        task?.cancel()
-        task = recipesSession.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    callback(.networkError, nil)
-                    return
-                }
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    callback(.networkError, nil)
-                    return
-                }
-                guard let responseJSON = try? JSONDecoder().decode(Recipes.self, from: data) else {
-                    callback(.networkError, nil)
-                    return
-                }
-                RecipesService.shared.recipes = responseJSON
-                callback(.requestSuccessfull, nil)
-            }
-        }
-        task?.resume()
     }
 }

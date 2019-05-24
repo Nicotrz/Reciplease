@@ -34,6 +34,18 @@ class SearchPageViewController: UIViewController {
     }
 
     @IBAction func searchRecipes(_ sender: Any) {
+        RecipesService.shared.requestRecipes { (error, _) in
+            switch error {
+            case .decodableInvalid:
+                print("Je sais pas décoder")
+            case .networkError:
+                print("je sais pas aller chercher le fichier")
+            case .responseInvalid:
+                print("La réponse n'est pas bonne")
+            case .requestSuccessfull:
+                print("ah bah ca fonctionne finalement")
+            }
+        }
     }
 
     private func dismissKeyboard() {
