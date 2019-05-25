@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		068E7F3F22995D2C007EC32D /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E7F3E22995D2C007EC32D /* Recipes.swift */; };
 		06C52F632294752000FE904E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F622294752000FE904E /* AppDelegate.swift */; };
 		06C52F682294752000FE904E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06C52F662294752000FE904E /* Main.storyboard */; };
 		06C52F6B2294752000FE904E /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F692294752000FE904E /* Reciplease.xcdatamodeld */; };
@@ -14,9 +15,8 @@
 		06C52F702294752100FE904E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06C52F6E2294752100FE904E /* LaunchScreen.storyboard */; };
 		06C52F7B2294752100FE904E /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F7A2294752100FE904E /* RecipleaseTests.swift */; };
 		06C52F8A229485B400FE904E /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F89229485B400FE904E /* SearchPageViewController.swift */; };
-		06C52F8C229489F300FE904E /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F8B229489F300FE904E /* Ingredients.swift */; };
+		06C52F8C229489F300FE904E /* UserIngredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F8B229489F300FE904E /* UserIngredients.swift */; };
 		06C52F922295CF7A00FE904E /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F912295CF7A00FE904E /* SearchResultViewController.swift */; };
-		06C52F94229812D100FE904E /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F93229812D100FE904E /* Recipes.swift */; };
 		06C52F96229812FE00FE904E /* Recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C52F95229812FE00FE904E /* Recipes.json */; };
 		06C52F982298134000FE904E /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06C52F972298134000FE904E /* Keys.plist */; };
 		06C52F9A229816C400FE904E /* RecipesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F99229816C400FE904E /* RecipesService.swift */; };
@@ -37,6 +37,7 @@
 /* Begin PBXFileReference section */
 		04168FBA24DA05621314E461 /* Pods_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AAA1EF460078E723FF9FA8 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
+		068E7F3E22995D2C007EC32D /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		06C52F5F2294752000FE904E /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C52F622294752000FE904E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06C52F672294752000FE904E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,9 +49,8 @@
 		06C52F7A2294752100FE904E /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
 		06C52F7C2294752100FE904E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06C52F89229485B400FE904E /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
-		06C52F8B229489F300FE904E /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
+		06C52F8B229489F300FE904E /* UserIngredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIngredients.swift; sourceTree = "<group>"; };
 		06C52F912295CF7A00FE904E /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
-		06C52F93229812D100FE904E /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		06C52F95229812FE00FE904E /* Recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipes.json; sourceTree = "<group>"; };
 		06C52F972298134000FE904E /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		06C52F99229816C400FE904E /* RecipesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesService.swift; sourceTree = "<group>"; };
@@ -127,9 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				06C52F692294752000FE904E /* Reciplease.xcdatamodeld */,
-				06C52F8B229489F300FE904E /* Ingredients.swift */,
-				06C52F93229812D100FE904E /* Recipes.swift */,
+				06C52F8B229489F300FE904E /* UserIngredients.swift */,
 				06C52F99229816C400FE904E /* RecipesService.swift */,
+				068E7F3E22995D2C007EC32D /* Recipes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,7 +170,6 @@
 				B1BE2522D0177A7E72F86836 /* Pods-RecipleaseTests.debug.xcconfig */,
 				331367ABC7E2B9982985C8E9 /* Pods-RecipleaseTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -185,7 +184,6 @@
 				06C52F5B2294752000FE904E /* Sources */,
 				06C52F5C2294752000FE904E /* Frameworks */,
 				06C52F5D2294752000FE904E /* Resources */,
-				06C52F88229476BC00FE904E /* ShellScript */,
 				1D815F82FDA2A5637592530C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -277,23 +275,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		06C52F88229476BC00FE904E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
 		1D815F82FDA2A5637592530C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,9 +343,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06C52F8C229489F300FE904E /* Ingredients.swift in Sources */,
-				06C52F94229812D100FE904E /* Recipes.swift in Sources */,
+				06C52F8C229489F300FE904E /* UserIngredients.swift in Sources */,
 				06C52F8A229485B400FE904E /* SearchPageViewController.swift in Sources */,
+				068E7F3F22995D2C007EC32D /* Recipes.swift in Sources */,
 				06C52F922295CF7A00FE904E /* SearchResultViewController.swift in Sources */,
 				06C52F6B2294752000FE904E /* Reciplease.xcdatamodeld in Sources */,
 				06C52F632294752000FE904E /* AppDelegate.swift in Sources */,

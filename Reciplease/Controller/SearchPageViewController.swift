@@ -23,29 +23,19 @@ class SearchPageViewController: UIViewController {
             showAlertMessage(error: "Please type an ingredient first!")
             return
         }
-        Ingredients.shared.addIngredient(toadd: ingredientTextField.text!)
+        UserIngredients.shared.addIngredient(toadd: ingredientTextField.text!)
         ingredientTextField.text = ""
         refreshList()
     }
 
     @IBAction func clearList(_ sender: Any) {
-        Ingredients.shared.resetIngredients()
+        UserIngredients.shared.resetIngredients()
         refreshList()
     }
 
     @IBAction func searchRecipes(_ sender: Any) {
-        RecipesService.shared.requestRecipes { (error, _) in
-            switch error {
-            case .decodableInvalid:
-                print("Je sais pas décoder")
-            case .networkError:
-                print("je sais pas aller chercher le fichier")
-            case .responseInvalid:
-                print("La réponse n'est pas bonne")
-            case .requestSuccessfull:
-                print("ah bah ca fonctionne finalement")
-            }
-        }
+        RecipesService.shared.requestRecipes()
+        performSegue(withIdentifier: "loadList", sender: nil)
     }
 
     private func dismissKeyboard() {
@@ -57,7 +47,7 @@ class SearchPageViewController: UIViewController {
     }
 
     private func refreshList() {
-        ingredientListTextView.text = Ingredients.shared.getIngredients()
+        ingredientListTextView.text = UserIngredients.shared.getIngredients()
     }
 
     private func showAlertMessage(error: String) {

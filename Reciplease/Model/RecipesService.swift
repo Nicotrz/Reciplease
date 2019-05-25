@@ -11,16 +11,6 @@ import Alamofire
 
 class RecipesService {
 
-    // MARK: Enumeration
-
-    // Differents return of ErrorCase possibles
-    enum ErrorCase {
-        case requestSuccessfull
-        case responseInvalid
-        case decodableInvalid
-        case networkError
-    }
-
     // MARK: Singleton Property
     static var shared = RecipesService()
 
@@ -29,21 +19,12 @@ class RecipesService {
     // Init private for Singleton
     private init() {}
 
-    // init for testing purposes
-    init(recipesSession: URLSession) {
-        self.recipesSession = recipesSession
-    }
-
     // MARK: private properties
 
     // The URL for the request
     private var requestURL = "https://api.edamam.com/search"
 
-    // The task for the request
-    private var task: URLSessionDataTask?
-
-    // The session for the request
-    private var recipesSession = URLSession(configuration: .default)
+    let session = Alamofire.Session()
 
     // The Rate object to collect current rates
     private var recipes: Recipes?
@@ -98,7 +79,17 @@ class RecipesService {
     // - Type of error for result purpose
     // - String? contain the update date on european format
     // This method send the result to the rates variable
-    func requestRecipes(callback: @escaping (ErrorCase, String?) -> Void) {
-        let request = createRecipeRequest(withRequest: "apple")
+    func requestRecipes()
+    {
+        let url = createRecipeRequest(withRequest: "apple")
+        // Set up the call and fire it off
+        session.request(url).responseDecodable() { (response: DataResponse<Recipes>) in
+            switch response.result {
+            case let .success(value):
+                self.recipes = value
+            case let .failure(error):
+                print(error)
+            }
+        }
     }
 }

@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Ingredients {
+class UserIngredients {
 
-    static var shared = Ingredients()
+    static var shared = UserIngredients()
 
     var all = [String]()
 

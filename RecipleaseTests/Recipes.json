@@ -1,5 +1,3 @@
-#https://api.edamam.com/search?q=curry chicken tomato spaghetti&app_id=xxxx&app_key=xxxxq=curry%20chicken%20tomato%20spaghetti
-
 {
     "q": "curry chicken tomato spaghetti",
     "from": 0,
@@ -11,10 +9,10 @@
             ""
         ],
         "app_key": [
-            "46b0957c0a9c17acb2afa0a2077264f9"
+            "xxxxx"
         ],
         "app_id": [
-            "7246a567"
+            "xxxxx"
         ]
     },
     "more": true,
