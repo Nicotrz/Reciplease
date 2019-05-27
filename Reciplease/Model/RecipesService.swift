@@ -88,14 +88,32 @@ class RecipesService {
         }
         return unwrappedHit[index]
     }
-    
+
+    func getIngredients(atindex index: Int) -> String {
+        let hit = getRecipe(atindex: index)
+        var result = ""
+        for ingredient in hit!.recipe!.ingredientLines! {
+            result += "\(ingredient), "
+        }
+        return result
+    }
+
+    private func createRequestDetail() -> String {
+        var result = ""
+        for ingredient in UserIngredients.shared.all {
+            result += "%20\(ingredient)"
+        }
+        return result
+    }
+
     // Refresh the ChangeRate. We need a closure on argument with:
     // - Type of error for result purpose
     // - String? contain the update date on european format
     // This method send the result to the rates variable
     func requestRecipes(callback: @escaping (Bool) -> Void)
     {
-        let url = createRecipeRequest(withRequest: "apple%20cheese%20curry")
+        let request = createRequestDetail()
+        let url = createRecipeRequest(withRequest: request)
         // Set up the call and fire it off
         session.request(url).responseDecodable() { (response: DataResponse<Recipes>) in
             switch response.result {

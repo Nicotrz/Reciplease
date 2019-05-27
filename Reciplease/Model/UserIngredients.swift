@@ -8,6 +8,14 @@
 
 import Foundation
 
+extension String {
+    var containsSpecialCharacter: Bool {
+        let regex = ".*[^A-Za-z].*"
+        let testString = NSPredicate(format:"SELF MATCHES %@", regex)
+        return testString.evaluate(with: self)
+    }
+}
+
 class UserIngredients {
 
     static var shared = UserIngredients()
@@ -16,10 +24,19 @@ class UserIngredients {
 
     private init() {}
 
-    func addIngredient(toadd ingredients: String ) {
-        all.append(ingredients)
+    var isEmpty: Bool {
+        return all.isEmpty
     }
 
+    func addIngredient(toadd ingredients: String ) -> Bool {
+        guard !ingredients.containsSpecialCharacter else {
+            return false
+        }
+        all.append(ingredients)
+        return true
+    }
+
+    
     func getIngredients() -> String {
         var result = ""
         guard !all.isEmpty else {

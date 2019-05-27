@@ -23,7 +23,7 @@ extension SearchResultViewController: UITableViewDataSource {
         return UITableViewCell()
         }
         let recipe = RecipesService.shared.getRecipe(atindex: indexPath.row)
-        cell.configure(title: recipe?.recipe?.label! ?? "default" , detail: recipe?.recipe.debugDescription ?? "default", like: "1", preparationTime: String(recipe!.recipe!.totalTime!) ?? "default")
+        cell.configure(title: recipe?.recipe?.label! ?? "default" , detail: RecipesService.shared.getIngredients(atindex: indexPath.row), like: "1", preparationTime: String(recipe!.recipe!.totalTime!) ?? "default", imageUrl: recipe?.recipe?.image ?? "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png")
         return cell
     }
 

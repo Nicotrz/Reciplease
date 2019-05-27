@@ -284,28 +284,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="179.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Eq_it-na_pizza-margherita_sep2005_sml" translatesAutoresizingMaskIntoConstraints="NO" id="Zei-gn-C8k">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zei-gn-C8k">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="179.66666666666666"/>
                                                 </imageView>
+                                                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbP-vU-A5i">
+                                                    <rect key="frame" x="0.0" y="130.66666666666666" width="375" height="49"/>
+                                                    <color key="backgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="zVH-k0-DoM">
-                                                    <rect key="frame" x="5" y="121.66666666666669" width="365" height="48"/>
+                                                    <rect key="frame" x="5" y="130.66666666666666" width="365" height="39"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pizza" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pu8-Yw-izv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="310" height="22"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pizza" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pu8-Yw-izv">
+                                                            <rect key="frame" x="0.0" y="0.0" width="42.666666666666664" height="22"/>
                                                             <fontDescription key="fontDescription" name="Kailasa-Bold" family="Kailasa" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Au bon jambon de bayonne!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9K-vq-vR5">
-                                                            <rect key="frame" x="0.0" y="25.999999999999986" width="236.66666666666666" height="22"/>
-                                                            <fontDescription key="fontDescription" name="Kailasa-Bold" family="Kailasa" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Au bon jambon de bayonne!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="f9K-vq-vR5">
+                                                            <rect key="frame" x="0.0" y="26" width="139.33333333333334" height="13"/>
+                                                            <fontDescription key="fontDescription" name="Kailasa-Bold" family="Kailasa" pointSize="10"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="Pu8-Yw-izv" firstAttribute="width" secondItem="zVH-k0-DoM" secondAttribute="width" constant="-55" id="azb-Yj-J84"/>
-                                                    </constraints>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nfc-uS-lhM">
                                                     <rect key="frame" x="283.33333333333331" y="16" width="81.666666666666686" height="51"/>
@@ -355,9 +356,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Zei-gn-C8k" firstAttribute="top" secondItem="QFT-i5-4uv" secondAttribute="top" id="13f-be-uWh"/>
+                                                <constraint firstAttribute="trailing" secondItem="qbP-vU-A5i" secondAttribute="trailing" id="2yN-dT-55C"/>
+                                                <constraint firstAttribute="bottom" secondItem="qbP-vU-A5i" secondAttribute="bottom" id="G5h-u6-fTr"/>
                                                 <constraint firstAttribute="trailing" secondItem="Zei-gn-C8k" secondAttribute="trailing" id="H2u-zP-N5k"/>
                                                 <constraint firstAttribute="bottom" secondItem="Zei-gn-C8k" secondAttribute="bottom" id="MI2-aQ-GV0"/>
+                                                <constraint firstItem="qbP-vU-A5i" firstAttribute="leading" secondItem="QFT-i5-4uv" secondAttribute="leading" id="RqR-XP-Snt"/>
                                                 <constraint firstItem="nfc-uS-lhM" firstAttribute="top" secondItem="QFT-i5-4uv" secondAttribute="topMargin" constant="5" id="WLG-my-mLN"/>
+                                                <constraint firstItem="qbP-vU-A5i" firstAttribute="top" secondItem="zVH-k0-DoM" secondAttribute="top" id="alM-Tu-IW9"/>
                                                 <constraint firstItem="Zei-gn-C8k" firstAttribute="height" secondItem="QFT-i5-4uv" secondAttribute="height" id="cAJ-5I-eFA"/>
                                                 <constraint firstItem="Zei-gn-C8k" firstAttribute="leading" secondItem="QFT-i5-4uv" secondAttribute="leading" id="gDz-G7-fGd"/>
                                                 <constraint firstAttribute="trailing" secondItem="zVH-k0-DoM" secondAttribute="trailing" constant="5" id="jC7-gn-e43"/>
@@ -411,7 +416,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Eq_it-na_pizza-margherita_sep2005_sml" width="1024" height="768"/>
         <image name="Facebook_like_thumb" width="2000" height="1713"/>
         <image name="clock" width="720" height="720"/>
     </resources>

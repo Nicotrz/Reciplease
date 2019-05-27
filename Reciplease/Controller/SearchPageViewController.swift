@@ -28,7 +28,10 @@ class SearchPageViewController: UIViewController {
             showAlertMessage(error: "Please type an ingredient first!")
             return
         }
-        UserIngredients.shared.addIngredient(toadd: ingredientTextField.text!)
+        guard UserIngredients.shared.addIngredient(toadd: ingredientTextField.text!) else {
+            showAlertMessage(error: "Please enter one ingredient at a time")
+            return
+        }
         ingredientTextField.text = ""
         refreshList()
     }
@@ -39,6 +42,10 @@ class SearchPageViewController: UIViewController {
     }
 
     @IBAction func searchRecipes(_ sender: Any) {
+        guard !UserIngredients.shared.isEmpty else {
+            showAlertMessage(error: "Please type an ingredient first!")
+            return
+        }
         loadingActivityIndicator.isHidden = false
         RecipesService.shared.requestRecipes() { (response) in
             guard response else {
