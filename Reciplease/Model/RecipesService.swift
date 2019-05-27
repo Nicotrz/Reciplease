@@ -87,30 +87,79 @@ class RecipesService {
         RecipesService.shared = RecipesService()
     }
 
-    func getRecipe(atindex index: Int) -> Hit? {
+    private func getRecipe(atindex index: Int) -> Recipe? {
         guard let unwrappedReciped = recipes else {
             return nil
         }
         guard let unwrappedHit = unwrappedReciped.hits else {
             return nil
         }
-        return unwrappedHit[index]
+        guard let unwrappedRecipe = unwrappedHit[index].recipe else {
+            return nil
+        }
+        return unwrappedRecipe
+    }
+
+    func getName(atIndex index: Int) -> String {
+        guard let recipe = getRecipe(atindex: index) else {
+            return ""
+        }
+        guard let label = recipe.label else {
+            return ""
+        }
+        return label
+    }
+
+    func getPreparationTime(atIndex index: Int) -> String {
+        guard let recipe = getRecipe(atindex: index) else {
+            return ""
+        }
+        guard let preparationTime = recipe.totalTime else {
+            return "-"
+        }
+        guard preparationTime != 0 else {
+            return "-"
+        }
+        return "\(String(preparationTime))'"
+    }
+
+    func getImageUrl(atIndex index: Int) -> String {
+        guard let recipe = getRecipe(atindex: index) else {
+            return ""
+            }
+        guard let url = recipe.image else {
+            return ""
+        }
+        return url
     }
 
     func getIngredients(atindex index: Int) -> String {
-        let hit = getRecipe(atindex: index)
+        guard let recipe = getRecipe(atindex: index) else {
+            return ""
+        }
         var result = ""
-        for ingredient in hit!.recipe!.ingredientLines! {
+        guard let ingredientLines = recipe.ingredientLines else {
+            return ""
+        }
+        for ingredient in ingredientLines {
             result += "\(ingredient), "
         }
         return result
     }
 
     func getFullIngredients(atindex index: Int) -> String {
-        let hit = getRecipe(atindex: index)
+        guard let recipe = getRecipe(atindex: index) else {
+            return ""
+        }
+        guard let ingredients = recipe.ingredients else {
+            return ""
+        }
         var result = ""
-        for ingredient in hit!.recipe!.ingredientLines! {
-            result += "- \(ingredient)\n"
+        for ingredient in ingredients {
+            guard let text = ingredient.text else {
+                return result
+            }
+            result += "- \(text)\n"
         }
         return result
     }

@@ -10,15 +10,39 @@ import UIKit
 
 class RecipeDetailViewController: UIViewController {
 
+    var favorite = false
+    
+    @IBOutlet weak var favIcon: UIBarButtonItem!
+    
     @IBOutlet weak var illustrationImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailTextView: UITextView!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
-        let recipe = RecipesService.shared.getRecipe(atindex: RecipesService.shared.selectedRow)
-        titleLabel.text = recipe?.recipe?.label! ?? "default"
-        detailTextView.text = RecipesService.shared.getFullIngredients(atindex: RecipesService.shared.selectedRow)
-        illustrationImage.imageFromServerURL(urlString: recipe?.recipe?.image ?? "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png", PlaceHolderImage: UIImage.init() )
+        loadData()
         super.viewWillAppear(animated)
     }
+    
+    private func loadData() {
+        let indexData = RecipesService.shared.selectedRow
+        titleLabel.text = RecipesService.shared.getName(atIndex: indexData)
+        detailTextView.text = RecipesService.shared.getFullIngredients(atindex: indexData)
+        timeLabel.text = RecipesService.shared.getPreparationTime(atIndex: indexData)
+        illustrationImage.imageFromServerURL(urlString: RecipesService.shared.getImageUrl(atIndex: indexData), PlaceHolderImage: UIImage.init())
+    }
+
+    private func changeImageStatus() {
+        if favorite {
+            favIcon.image = UIImage(imageLiteralResourceName: "favEmpty")
+        } else {
+            favIcon.image = UIImage(imageLiteralResourceName: "favFull")
+        }
+    }
+
+    @IBAction func makeFavorite(_ sender: Any) {
+        changeImageStatus()
+        favorite = !favorite
+    }
+
 }

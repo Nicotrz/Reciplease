@@ -13,8 +13,11 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultSearchCell", for: indexPath) as? ResultSearchTableViewCell else {
         return UITableViewCell()
         }
-        let recipe = RecipesService.shared.getRecipe(atindex: indexPath.row)
-        cell.configure(title: recipe?.recipe?.label! ?? "default" , detail: RecipesService.shared.getIngredients(atindex: indexPath.row), preparationTime: String(recipe!.recipe!.totalTime!) , imageUrl: recipe?.recipe?.image ?? "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png")
+        let title = RecipesService.shared.getName(atIndex: indexPath.row)
+        let ingredients = RecipesService.shared.getIngredients(atindex: indexPath.row)
+        let preparationTime = RecipesService.shared.getPreparationTime(atIndex: indexPath.row)
+        let imageUrl = RecipesService.shared.getImageUrl(atIndex: indexPath.row)
+        cell.configure(title: title , detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl)
         return cell
     }
 
@@ -30,5 +33,6 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         RecipesService.shared.selectedRow = indexPath.row
         performSegue(withIdentifier: "loadDetail", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
