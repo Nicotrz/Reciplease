@@ -37,23 +37,10 @@ class ResultSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var preparationTimeLabel: UILabel!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-    func configure(title: String, detail: String, like: String, preparationTime: String, imageUrl: String) {
+    func configure(title: String, detail: String, preparationTime: String, imageUrl: String) {
         titleLabel.text = title
         detailLabel.text = detail
-        likeLabel.text = like
-        preparationTimeLabel.text = preparationTime
+        preparationTimeLabel.text = "\(preparationTime)'"
         resultPicture.imageFromServerURL(urlString: imageUrl, PlaceHolderImage: UIImage.init() )
     }
 }

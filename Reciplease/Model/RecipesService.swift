@@ -11,6 +11,12 @@ import Alamofire
 
 class RecipesService {
 
+    enum ErrorCase {
+        case requestSuccessfull
+        case networkError
+        case noResultFound
+    }
+
     // MARK: Singleton Property
     static var shared = RecipesService()
     
@@ -24,6 +30,8 @@ class RecipesService {
     // The URL for the request
     private var requestURL = "https://api.edamam.com/search"
 
+    var selectedRow = 0
+    
     let session = Alamofire.Session()
 
     // The Rate object to collect current rates
@@ -98,6 +106,15 @@ class RecipesService {
         return result
     }
 
+    func getFullIngredients(atindex index: Int) -> String {
+        let hit = getRecipe(atindex: index)
+        var result = ""
+        for ingredient in hit!.recipe!.ingredientLines! {
+            result += "- \(ingredient)\n"
+        }
+        return result
+    }
+    
     private func createRequestDetail() -> String {
         var result = ""
         for ingredient in UserIngredients.shared.all {
@@ -110,7 +127,7 @@ class RecipesService {
     // - Type of error for result purpose
     // - String? contain the update date on european format
     // This method send the result to the rates variable
-    func requestRecipes(callback: @escaping (Bool) -> Void)
+    func requestRecipes(callback: @escaping (ErrorCase) -> Void)
     {
         let request = createRequestDetail()
         let url = createRecipeRequest(withRequest: request)
@@ -119,10 +136,14 @@ class RecipesService {
             switch response.result {
             case let .success(value):
                 self.recipes = value
-                callback(true)
+                guard value.count ?? 0 > 0 else {
+                    callback(.noResultFound)
+                    return
+                }
+                callback(.requestSuccessfull)
             case let .failure(error):
                 print(error)
-                callback(false)
+                callback(.networkError)
             }
         }
     }

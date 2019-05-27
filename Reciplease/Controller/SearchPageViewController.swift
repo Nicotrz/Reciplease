@@ -48,11 +48,15 @@ class SearchPageViewController: UIViewController {
         }
         loadingActivityIndicator.isHidden = false
         RecipesService.shared.requestRecipes() { (response) in
-            guard response else {
+            switch response {
+            case .requestSuccessfull:
+                self.performSegue(withIdentifier: "loadList", sender: nil)
+            case .networkError:
                 self.showAlertMessage(error: "Data loading error")
-                return
+            case .noResultFound:
+                self.showAlertMessage(error: "No result found")
+                self.loadingActivityIndicator.isHidden = true
             }
-            self.performSegue(withIdentifier: "loadList", sender: nil)
         }
     }
 

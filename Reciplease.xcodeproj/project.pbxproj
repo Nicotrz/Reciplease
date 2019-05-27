@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06808477229C1A5F00180BBA /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */; };
 		068E7F3F22995D2C007EC32D /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E7F3E22995D2C007EC32D /* Recipes.swift */; };
 		068E7F41229BE27D007EC32D /* ResultSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E7F40229BE27D007EC32D /* ResultSearchTableViewCell.swift */; };
 		06C52F632294752000FE904E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F622294752000FE904E /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		04168FBA24DA05621314E461 /* Pods_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AAA1EF460078E723FF9FA8 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
+		06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		068E7F3E22995D2C007EC32D /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		068E7F40229BE27D007EC32D /* ResultSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchTableViewCell.swift; sourceTree = "<group>"; };
 		06C52F5F2294752000FE904E /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +154,7 @@
 			children = (
 				06C52F89229485B400FE904E /* SearchPageViewController.swift */,
 				06C52F912295CF7A00FE904E /* SearchResultViewController.swift */,
+				06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06C52F8C229489F300FE904E /* UserIngredients.swift in Sources */,
+				06808477229C1A5F00180BBA /* RecipeDetailViewController.swift in Sources */,
 				06C52F8A229485B400FE904E /* SearchPageViewController.swift in Sources */,
 				068E7F41229BE27D007EC32D /* ResultSearchTableViewCell.swift in Sources */,
 				068E7F3F22995D2C007EC32D /* Recipes.swift in Sources */,
