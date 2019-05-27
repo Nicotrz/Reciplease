@@ -12,12 +12,17 @@ class SearchPageViewController: UIViewController {
 
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var ingredientListTextView: UITextView!
-
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         refreshList()
         super.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        loadingActivityIndicator.isHidden = true
+        super.viewWillAppear(animated)
+    }
     @IBAction func addIngredient(_ sender: Any) {
         guard ingredientTextField.text != "" else {
             showAlertMessage(error: "Please type an ingredient first!")
@@ -34,8 +39,14 @@ class SearchPageViewController: UIViewController {
     }
 
     @IBAction func searchRecipes(_ sender: Any) {
-        RecipesService.shared.requestRecipes()
-        performSegue(withIdentifier: "loadList", sender: nil)
+        loadingActivityIndicator.isHidden = false
+        RecipesService.shared.requestRecipes() { (response) in
+            guard response else {
+                self.showAlertMessage(error: "Data loading error")
+                return
+            }
+            self.performSegue(withIdentifier: "loadList", sender: nil)
+        }
     }
 
     private func dismissKeyboard() {

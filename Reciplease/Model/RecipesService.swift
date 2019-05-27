@@ -13,7 +13,7 @@ class RecipesService {
 
     // MARK: Singleton Property
     static var shared = RecipesService()
-
+    
     // MARK: Init methods
 
     // Init private for Singleton
@@ -61,6 +61,10 @@ class RecipesService {
         return resultKey
     }
 
+    var numberOfSearchResults: Int {
+        return recipes?.to ?? 0
+    }
+    
     // MARK: Private methods
 
     // Creating the request from the URL with accessKey
@@ -75,20 +79,32 @@ class RecipesService {
         RecipesService.shared = RecipesService()
     }
 
+    func getRecipe(atindex index: Int) -> Hit? {
+        guard let unwrappedReciped = recipes else {
+            return nil
+        }
+        guard let unwrappedHit = unwrappedReciped.hits else {
+            return nil
+        }
+        return unwrappedHit[index]
+    }
+    
     // Refresh the ChangeRate. We need a closure on argument with:
     // - Type of error for result purpose
     // - String? contain the update date on european format
     // This method send the result to the rates variable
-    func requestRecipes()
+    func requestRecipes(callback: @escaping (Bool) -> Void)
     {
-        let url = createRecipeRequest(withRequest: "apple")
+        let url = createRecipeRequest(withRequest: "apple%20cheese%20curry")
         // Set up the call and fire it off
         session.request(url).responseDecodable() { (response: DataResponse<Recipes>) in
             switch response.result {
             case let .success(value):
                 self.recipes = value
+                callback(true)
             case let .failure(error):
                 print(error)
+                callback(false)
             }
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 
 class SearchResultViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -18,7 +19,11 @@ class SearchResultViewController: UIViewController {
 
 extension SearchResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultSearchCell", for: indexPath) as? ResultSearchTableViewCell else {
+        return UITableViewCell()
+        }
+        let recipe = RecipesService.shared.getRecipe(atindex: indexPath.row)
+        cell.configure(title: recipe?.recipe?.label! ?? "default" , detail: recipe?.recipe.debugDescription ?? "default", like: "1", preparationTime: String(recipe!.recipe!.totalTime!) ?? "default")
         return cell
     }
 
@@ -27,6 +32,7 @@ extension SearchResultViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        print(RecipesService.shared.numberOfSearchResults)
+        return RecipesService.shared.numberOfSearchResults
     }
 }
