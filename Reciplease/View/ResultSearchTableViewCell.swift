@@ -16,9 +16,12 @@ class ResultSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var preparationTimeLabel: UILabel!
-    
-    func configure(title: String, detail: String, preparationTime: String, imageUrl: String) {
+
+    override func prepareForReuse() {
         resultPicture.image = nil
+        super.prepareForReuse()
+    }
+    func configure(title: String, detail: String, preparationTime: String, imageUrl: String) {
         titleLabel.text = title
         detailLabel.text = detail
         preparationTimeLabel.text = preparationTime

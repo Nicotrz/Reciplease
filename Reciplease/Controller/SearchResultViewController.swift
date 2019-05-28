@@ -23,7 +23,7 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
         let ingredients = RecipesService.shared.getIngredients(atindex: indexPath.row)
         let preparationTime = RecipesService.shared.getPreparationTime(atIndex: indexPath.row)
         let imageUrl = RecipesService.shared.getImageUrl(atIndex: indexPath.row)
-        cell.configure(title: title , detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl)
+            cell.configure(title: title , detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl)
         return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as? LoadingCellTableViewCell else {
@@ -53,6 +53,15 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.estimatedRowHeight = 0
+        if indexPath.section == 1 {
+            return 50
+        } else {
+            return 180
+        }
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -67,6 +76,7 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     func beginBatchFetch() {
         fetchingMore = true
         tableView.reloadSections(IndexSet(integer: 1), with: .none)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
         RecipesService.shared.requestRecipes() { (response) in
             switch response {
             case .requestSuccessfull:
@@ -76,8 +86,9 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
             case .noResultFound:
                 print("no result")
             }
-            self.tableView.reloadData()
             self.fetchingMore = false
+            self.tableView.reloadData()
+        }
         }
     }
 }

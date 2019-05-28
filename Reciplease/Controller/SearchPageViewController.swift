@@ -21,6 +21,7 @@ class SearchPageViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         loadingActivityIndicator.isHidden = true
+        RecipesService.shared.resetShared()
         super.viewWillAppear(animated)
     }
     @IBAction func addIngredient(_ sender: Any) {
@@ -55,8 +56,8 @@ class SearchPageViewController: UIViewController {
                 self.showAlertMessage(error: "Data loading error")
             case .noResultFound:
                 self.showAlertMessage(error: "No result found")
-                self.loadingActivityIndicator.isHidden = true
             }
+            self.loadingActivityIndicator.isHidden = true
         }
     }
 
