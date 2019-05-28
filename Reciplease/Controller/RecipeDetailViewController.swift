@@ -11,6 +11,8 @@ import UIKit
 class RecipeDetailViewController: UIViewController {
 
     var favorite = false
+
+    var directionsURL = "http://www.google.com"
     
     @IBOutlet weak var favIcon: UIBarButtonItem!
     
@@ -29,6 +31,7 @@ class RecipeDetailViewController: UIViewController {
         titleLabel.text = RecipesService.shared.getName(atIndex: indexData)
         detailTextView.text = RecipesService.shared.getFullIngredients(atindex: indexData)
         timeLabel.text = RecipesService.shared.getPreparationTime(atIndex: indexData)
+        directionsURL = RecipesService.shared.getDirectionUrl(atindex: indexData)
         illustrationImage.imageFromServerURL(urlString: RecipesService.shared.getImageUrl(atIndex: indexData), PlaceHolderImage: UIImage.init())
     }
 
@@ -45,4 +48,8 @@ class RecipeDetailViewController: UIViewController {
         favorite = !favorite
     }
 
+    @IBAction func getDirection(_ sender: Any) {
+        guard let url = URL(string: directionsURL) else { return }
+        UIApplication.shared.open(url)
+    }
 }

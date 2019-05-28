@@ -173,7 +173,17 @@ class RecipesService {
         }
         return result
     }
-    
+
+    func getDirectionUrl(atindex index: Int) -> String {
+        guard let recipe = getRecipe(atIndex: index) else {
+            return ""
+            }
+        guard let url = recipe.url else {
+            return ""
+        }
+        return url
+    }
+
     private func createRequestDetail() -> String {
         var result = ""
         for ingredient in UserIngredients.shared.all {

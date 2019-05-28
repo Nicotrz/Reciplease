@@ -66,7 +66,7 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         
-        if offsetY > contentHeight - scrollView.frame.height {
+        if offsetY > contentHeight - scrollView.frame.height * 3 {
             if !fetchingMore {
                 beginBatchFetch()
             }

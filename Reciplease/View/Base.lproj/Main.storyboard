@@ -432,7 +432,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hNQ-zN-oVd">
-                                <rect key="frame" x="20" y="336.66666666666674" width="335" height="372.33333333333326"/>
+                                <rect key="frame" x="20" y="336.66666666666674" width="335" height="342.33333333333326"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
@@ -465,6 +465,19 @@
                                     <constraint firstAttribute="trailing" secondItem="euC-Cb-IRH" secondAttribute="trailing" id="vbz-eW-tj6"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ei7-ho-wLU">
+                                <rect key="frame" x="135" y="689" width="105" height="30"/>
+                                <color key="backgroundColor" red="0.4941176471" green="0.82745098039999998" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="Nlj-Eo-3s8"/>
+                                </constraints>
+                                <state key="normal" title="Get Directions">
+                                    <color key="titleColor" red="0.95675212139999999" green="0.94116199020000002" blue="0.94117748739999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="getDirection:" destination="MeT-2Z-2cB" eventType="touchUpInside" id="Soh-oE-14K"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -477,9 +490,11 @@
                             <constraint firstItem="1V3-cD-1dH" firstAttribute="leading" secondItem="l1P-cu-AVr" secondAttribute="leading" id="JzI-pt-fSM"/>
                             <constraint firstItem="sUO-ZH-YvN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="l1P-cu-AVr" secondAttribute="leading" constant="20" id="LK7-PS-fe5"/>
                             <constraint firstItem="hNQ-zN-oVd" firstAttribute="leading" secondItem="l1P-cu-AVr" secondAttribute="leading" constant="20" id="Paa-kq-oBR"/>
-                            <constraint firstItem="l1P-cu-AVr" firstAttribute="bottom" secondItem="hNQ-zN-oVd" secondAttribute="bottom" constant="20" id="VL4-LS-OGV"/>
+                            <constraint firstItem="l1P-cu-AVr" firstAttribute="bottom" secondItem="ei7-ho-wLU" secondAttribute="bottom" constant="10" id="V4F-yo-iNP"/>
                             <constraint firstItem="l1P-cu-AVr" firstAttribute="trailing" secondItem="ohS-m1-HIo" secondAttribute="trailing" constant="5" id="aGL-dt-jN5"/>
                             <constraint firstItem="l1P-cu-AVr" firstAttribute="trailing" secondItem="hNQ-zN-oVd" secondAttribute="trailing" constant="20" id="aYk-ok-EZj"/>
+                            <constraint firstItem="ei7-ho-wLU" firstAttribute="top" secondItem="hNQ-zN-oVd" secondAttribute="bottom" constant="10" id="d3t-vv-cSN"/>
+                            <constraint firstItem="ei7-ho-wLU" firstAttribute="centerX" secondItem="cjL-LD-VUd" secondAttribute="centerX" id="vxI-Fh-XCy"/>
                             <constraint firstItem="ohS-m1-HIo" firstAttribute="top" secondItem="l1P-cu-AVr" secondAttribute="top" constant="5" id="zMc-01-YZU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l1P-cu-AVr"/>
@@ -502,7 +517,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="quX-9A-VbC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2901" y="-226"/>
+            <point key="canvasLocation" x="2900" y="-226.10837438423647"/>
         </scene>
     </scenes>
     <resources>
