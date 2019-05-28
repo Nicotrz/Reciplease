@@ -13,7 +13,7 @@ class Recipes: Codable {
     let params: Params?
     let more: Bool?
     let count: Int?
-    let hits: [Hit]?
+    var hits: [Hit]?
     
     enum CodingKeys: String, CodingKey {
         case q

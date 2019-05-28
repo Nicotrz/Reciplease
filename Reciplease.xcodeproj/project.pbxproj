@@ -10,6 +10,7 @@
 		06808477229C1A5F00180BBA /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */; };
 		06808479229C593C00180BBA /* ExtensionUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06808478229C593C00180BBA /* ExtensionUIImageView.swift */; };
 		0680847B229C61E500180BBA /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0680847A229C61E500180BBA /* ExtensionString.swift */; };
+		0680847D229D33CC00180BBA /* LoadingCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0680847C229D33CC00180BBA /* LoadingCellTableViewCell.swift */; };
 		068E7F3F22995D2C007EC32D /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E7F3E22995D2C007EC32D /* Recipes.swift */; };
 		068E7F41229BE27D007EC32D /* ResultSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068E7F40229BE27D007EC32D /* ResultSearchTableViewCell.swift */; };
 		06C52F632294752000FE904E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C52F622294752000FE904E /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 		06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		06808478229C593C00180BBA /* ExtensionUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImageView.swift; sourceTree = "<group>"; };
 		0680847A229C61E500180BBA /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
+		0680847C229D33CC00180BBA /* LoadingCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCellTableViewCell.swift; sourceTree = "<group>"; };
 		068E7F3E22995D2C007EC32D /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		068E7F40229BE27D007EC32D /* ResultSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchTableViewCell.swift; sourceTree = "<group>"; };
 		06C52F5F2294752000FE904E /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +153,7 @@
 				06C52F6C2294752100FE904E /* Assets.xcassets */,
 				068E7F40229BE27D007EC32D /* ResultSearchTableViewCell.swift */,
 				06808478229C593C00180BBA /* ExtensionUIImageView.swift */,
+				0680847C229D33CC00180BBA /* LoadingCellTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			files = (
 				06808479229C593C00180BBA /* ExtensionUIImageView.swift in Sources */,
 				06C52F8C229489F300FE904E /* UserIngredients.swift in Sources */,
+				0680847D229D33CC00180BBA /* LoadingCellTableViewCell.swift in Sources */,
 				06808477229C1A5F00180BBA /* RecipeDetailViewController.swift in Sources */,
 				06C52F8A229485B400FE904E /* SearchPageViewController.swift in Sources */,
 				068E7F41229BE27D007EC32D /* ResultSearchTableViewCell.swift in Sources */,

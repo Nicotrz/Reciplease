@@ -9,7 +9,13 @@
 import UIKit
 
 class SearchResultViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+    var fetchingMore = false
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultSearchCell", for: indexPath) as? ResultSearchTableViewCell else {
         return UITableViewCell()
         }
@@ -19,20 +25,59 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
         let imageUrl = RecipesService.shared.getImageUrl(atIndex: indexPath.row)
         cell.configure(title: title , detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl)
         return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as? LoadingCellTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.changeStatusLoadingInterface(activate: true)
+            return cell
+        }
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(RecipesService.shared.numberOfSearchResults)
-        return RecipesService.shared.numberOfSearchResults
+        if section == 0 {
+            return RecipesService.shared.numberOfSearchResults
+        } else if section == 1 && fetchingMore {
+            return 1
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         RecipesService.shared.selectedRow = indexPath.row
         performSegue(withIdentifier: "loadDetail", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !fetchingMore {
+                beginBatchFetch()
+            }
+        }
+    }
+    
+    func beginBatchFetch() {
+        fetchingMore = true
+        tableView.reloadSections(IndexSet(integer: 1), with: .none)
+        RecipesService.shared.requestRecipes() { (response) in
+            switch response {
+            case .requestSuccessfull:
+                print("success!")
+            case .networkError:
+                print("network error")
+            case .noResultFound:
+                print("no result")
+            }
+            self.tableView.reloadData()
+            self.fetchingMore = false
+        }
     }
 }

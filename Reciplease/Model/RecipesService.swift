@@ -17,6 +17,9 @@ class RecipesService {
         case noResultFound
     }
 
+    var from = 0
+    var to = -1
+    
     // MARK: Singleton Property
     static var shared = RecipesService()
     
@@ -30,6 +33,8 @@ class RecipesService {
     // The URL for the request
     private var requestURL = "https://api.edamam.com/search"
 
+    private var isFetchInProgress = false
+    
     var selectedRow = 0
     
     let session = Alamofire.Session()
@@ -70,14 +75,14 @@ class RecipesService {
     }
 
     var numberOfSearchResults: Int {
-        return recipes?.to ?? 0
+        return recipes?.hits?.count ?? 0
     }
     
     // MARK: Private methods
 
     // Creating the request from the URL with accessKey
-    private func createRecipeRequest(withRequest request: String) -> String {
-        return "\(requestURL)?app_id=\(appId)&app_key=\(appKey)&q=\(request)"
+    private func createRecipeRequest(withRequest request: String ) -> String {
+        return "\(requestURL)?app_id=\(appId)&app_key=\(appKey)&q=\(request)&from=\(from)&to=\(to)"
     }
 
     // MARK: Public methods
@@ -87,7 +92,12 @@ class RecipesService {
         RecipesService.shared = RecipesService()
     }
 
-    private func getRecipe(atindex index: Int) -> Recipe? {
+    private func recalculateFromTo() {
+        from = to + 1
+        to = from + 9
+    }
+
+    private func getRecipe(atIndex index: Int) -> Recipe? {
         guard let unwrappedReciped = recipes else {
             return nil
         }
@@ -101,7 +111,7 @@ class RecipesService {
     }
 
     func getName(atIndex index: Int) -> String {
-        guard let recipe = getRecipe(atindex: index) else {
+        guard let recipe = getRecipe(atIndex: index) else {
             return ""
         }
         guard let label = recipe.label else {
@@ -111,7 +121,7 @@ class RecipesService {
     }
 
     func getPreparationTime(atIndex index: Int) -> String {
-        guard let recipe = getRecipe(atindex: index) else {
+        guard let recipe = getRecipe(atIndex: index) else {
             return ""
         }
         guard let preparationTime = recipe.totalTime else {
@@ -124,7 +134,7 @@ class RecipesService {
     }
 
     func getImageUrl(atIndex index: Int) -> String {
-        guard let recipe = getRecipe(atindex: index) else {
+        guard let recipe = getRecipe(atIndex: index) else {
             return ""
             }
         guard let url = recipe.image else {
@@ -134,7 +144,7 @@ class RecipesService {
     }
 
     func getIngredients(atindex index: Int) -> String {
-        guard let recipe = getRecipe(atindex: index) else {
+        guard let recipe = getRecipe(atIndex: index) else {
             return ""
         }
         var result = ""
@@ -148,7 +158,7 @@ class RecipesService {
     }
 
     func getFullIngredients(atindex index: Int) -> String {
-        guard let recipe = getRecipe(atindex: index) else {
+        guard let recipe = getRecipe(atIndex: index) else {
             return ""
         }
         guard let ingredients = recipe.ingredients else {
@@ -178,20 +188,41 @@ class RecipesService {
     // This method send the result to the rates variable
     func requestRecipes(callback: @escaping (ErrorCase) -> Void)
     {
+        guard !isFetchInProgress else {
+            return
+        }
+        isFetchInProgress = true
         let request = createRequestDetail()
+        recalculateFromTo()
         let url = createRecipeRequest(withRequest: request)
         // Set up the call and fire it off
         session.request(url).responseDecodable() { (response: DataResponse<Recipes>) in
+            self.isFetchInProgress = false
             switch response.result {
             case let .success(value):
-                self.recipes = value
+                if self.recipes == nil {
+                    self.recipes = value
+                } else {
+                    guard var originHits = self.recipes!.hits else {
+                        callback(.networkError)
+                        return
+                    }
+                    guard let newHits = value.hits else {
+                        callback(.networkError)
+                        return
+                    }
+                    originHits.append(contentsOf: newHits)
+                    self.recipes!.hits = originHits
+                }
                 guard value.count ?? 0 > 0 else {
                     callback(.noResultFound)
                     return
                 }
                 callback(.requestSuccessfull)
             case let .failure(error):
+                print("==========")
                 print(error)
+                print("==========")
                 callback(.networkError)
             }
         }

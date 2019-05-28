@@ -27,4 +27,6 @@ extension UIImageView {
             })
             
         }).resume()
-    }}
+    }
+    
+}

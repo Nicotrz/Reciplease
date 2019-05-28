@@ -363,6 +363,26 @@
                                             <outlet property="titleLabel" destination="Pu8-Yw-izv" id="h6X-2R-Go9"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" rowHeight="50" id="Oa8-8X-dfK" customClass="LoadingCellTableViewCell" customModule="Reciplease" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="208" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oa8-8X-dfK" id="iEm-7Q-bYT">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7bY-Ee-Bzl">
+                                                    <rect key="frame" x="177.66666666666666" y="15" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7bY-Ee-Bzl" firstAttribute="centerX" secondItem="iEm-7Q-bYT" secondAttribute="centerX" id="ISL-Nd-jDx"/>
+                                                <constraint firstItem="7bY-Ee-Bzl" firstAttribute="centerY" secondItem="iEm-7Q-bYT" secondAttribute="centerY" id="nnL-o3-R0N"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="loadingActivityIndicator" destination="7bY-Ee-Bzl" id="i5W-gj-Rcc"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="axp-ey-WUt" id="eRY-Yz-912"/>
@@ -383,6 +403,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="gsc-mH-Hz9"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="GF6-ls-zUj" id="ah4-3I-Xoh"/>
                         <segue destination="MeT-2Z-2cB" kind="show" identifier="loadDetail" id="vcj-zC-AsT"/>
                     </connections>
                 </viewController>
