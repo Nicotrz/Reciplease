@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class RecipeDetailViewController: UIViewController {
 
@@ -51,5 +52,17 @@ class RecipeDetailViewController: UIViewController {
     @IBAction func getDirection(_ sender: Any) {
         guard let url = URL(string: directionsURL) else { return }
         UIApplication.shared.open(url)
+    }
+
+    private func saveFavorite() {
+        let newFavorite = CDRecipe(context: AppDelegate.viewContext)
+        let indexData = RecipesService.shared.selectedRow
+        newFavorite.name = RecipesService.shared.getName(atIndex: indexData)
+        newFavorite.ingredients_detail = RecipesService.shared.getFullIngredients(atindex: indexData)
+        newFavorite.ingredients_list = RecipesService.shared.getIngredients(atindex: indexData)
+        newFavorite.preparation_time = RecipesService.shared.getPreparationTime(atIndex: indexData)
+        newFavorite.direction_url = RecipesService.shared.getDirectionUrl(atindex: indexData)
+        newFavorite.image_url = RecipesService.shared.getImageUrl(atIndex: indexData)
+        try? AppDelegate.viewContext.save()
     }
 }
