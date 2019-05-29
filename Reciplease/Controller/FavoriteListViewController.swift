@@ -13,10 +13,11 @@ class FavoriteListViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var tableView: UITableView!
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         tableView.reloadData()
         RecipesService.shared.doesUserLoadData = false
+        super.viewWillAppear(animated)
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultSearchCell", for: indexPath) as? ResultSearchTableViewCell else {
                 return UITableViewCell()
