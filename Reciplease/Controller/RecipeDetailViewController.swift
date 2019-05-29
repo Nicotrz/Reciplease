@@ -70,6 +70,8 @@ class RecipeDetailViewController: UIViewController {
         changeImageStatus()
         if favorite {
             saveFavorite()
+        } else {
+            deleteFavorite()
         }
     }
 
@@ -94,5 +96,16 @@ class RecipeDetailViewController: UIViewController {
         catch {
             print("Failed!")
         }
+    }
+
+    private func deleteFavorite() {
+        let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
+        request.predicate = NSPredicate(format: "direction_url = %@", directionsURL)
+        guard let recipes = try? AppDelegate.viewContext.fetch(request) else {
+            return
+        }
+        let recipeToDelete = recipes[0] as NSManagedObject
+        AppDelegate.viewContext.delete(recipeToDelete)
+        try? AppDelegate.viewContext.save()
     }
 }
