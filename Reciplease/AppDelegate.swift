@@ -14,6 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    enum CurrentInterface {
+        case loading
+        case favorite
+    }
+
+    static var currentInterface: CurrentInterface = .loading
+    
     static var persistentContainer: NSPersistentContainer {
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     }
@@ -69,6 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
+        }
+    }
+
+    static func changeInterface() {
+        switch AppDelegate.currentInterface {
+        case .loading:
+            AppDelegate.currentInterface = .favorite
+        case .favorite:
+            AppDelegate.currentInterface = .loading
         }
     }
 

@@ -7,12 +7,23 @@
 //
 
 import UIKit
-import CoreData
 
 class RecipeDetailViewController: UIViewController {
-
-    var favorite = false
-
+    
+    var favorite = false {
+        didSet {
+            let nameImage: String
+            if favorite {
+                saveFavorite()
+                nameImage = "favFull"
+            } else {
+                deleteFavorite()
+                nameImage = "favEmpty"
+            }
+            favIcon.image = UIImage(imageLiteralResourceName: nameImage)
+        }
+    }
+    
     var directionsURL = "http://www.google.com"
     
     @IBOutlet weak var favIcon: UIBarButtonItem!
@@ -23,89 +34,68 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
-        if RecipesService.shared.doesUserLoadData {
-        loadData()
-        } else {
+        switch AppDelegate.currentInterface {
+        case .loading:
+            loadDataFromRequest()
+        case .favorite:
             loadDataFromCD()
         }
         checkFavoriteStatus()
         super.viewWillAppear(animated)
     }
-
+    
     private func checkFavoriteStatus() {
         if CDRecipe.recipeAlreadyAFavorite(withURL: directionsURL) {
             favorite = true
-            changeImageStatus()
         }
     }
     
-    private func loadData() {
+    private func loadDataFromRequest() {
         let indexData = RecipesService.shared.selectedRow
-        titleLabel.text = RecipesService.shared.getName(atIndex: indexData)
-        detailTextView.text = RecipesService.shared.getFullIngredients(atindex: indexData)
-        timeLabel.text = RecipesService.shared.getPreparationTime(atIndex: indexData)
-        directionsURL = RecipesService.shared.getDirectionUrl(atindex: indexData)
-        illustrationImage.imageFromServerURL(urlString: RecipesService.shared.getImageUrl(atIndex: indexData), PlaceHolderImage: UIImage.init())
+        let title = RecipesService.shared.getName(atIndex: indexData)
+        let detail = RecipesService.shared.getFullIngredients(atindex: indexData)
+        let time = RecipesService.shared.getPreparationTime(atIndex: indexData)
+        let directionURL = RecipesService.shared.getDirectionUrl(atindex: indexData)
+        let URLImage =  RecipesService.shared.getImageUrl(atIndex: indexData)
+        setInterface(title: title, detail: detail, preparationTime: time, directionUrl: directionURL, imageURL: URLImage)
     }
-
+    
     private func loadDataFromCD() {
-       let indexData = CDRecipe.selectedRow
-        titleLabel.text = CDRecipe.all[indexData].name!
-        detailTextView.text = CDRecipe.all[indexData].ingredients_detail!
-        timeLabel.text = CDRecipe.all[indexData].preparation_time
-        directionsURL = CDRecipe.all[indexData].direction_url!
-        illustrationImage.imageFromServerURL(urlString: CDRecipe.all[indexData].image_url!, PlaceHolderImage: UIImage.init())
+        let index = CDRecipe.selectedRow
+        let title = CDRecipe.getTitle(atIndex: index)
+        let detail = CDRecipe.getFullIngredients(atIndex: index)
+        let time = CDRecipe.getPreparationTime(atIndex: index)
+        let directionURL = CDRecipe.getDirectionsUrl(atIndex: index)
+        let URLImage = CDRecipe.getImageURL(atIndex: index)
+        setInterface(title: title, detail: detail, preparationTime: time, directionUrl: directionURL, imageURL: URLImage)
     }
-
-    private func changeImageStatus() {
-        if favorite {
-            favIcon.image = UIImage(imageLiteralResourceName: "favFull")
-        } else {
-            favIcon.image = UIImage(imageLiteralResourceName: "favEmpty")
-        }
+    
+    private func setInterface(title: String, detail: String, preparationTime: String, directionUrl: String, imageURL: String) {
+        titleLabel.text = title
+        detailTextView.text = detail
+        timeLabel.text = preparationTime
+        directionsURL = directionUrl
+        illustrationImage.imageFromServerURL(urlString: imageURL, PlaceHolderImage: UIImage.init())
     }
-
+    
     @IBAction func makeFavorite(_ sender: Any) {
         favorite = !favorite
-        changeImageStatus()
-        if favorite {
-            saveFavorite()
-        } else {
-            deleteFavorite()
-        }
     }
-
+    
     @IBAction func getDirection(_ sender: Any) {
         guard let url = URL(string: directionsURL) else { return }
         UIApplication.shared.open(url)
     }
-
+    
     private func saveFavorite() {
-        let newFavorite = CDRecipe(context: AppDelegate.viewContext)
-        let indexData = RecipesService.shared.selectedRow
-        newFavorite.name = RecipesService.shared.getName(atIndex: indexData)
-        newFavorite.ingredients_detail = RecipesService.shared.getFullIngredients(atindex: indexData)
-        newFavorite.ingredients_list = RecipesService.shared.getIngredients(atindex: indexData)
-        newFavorite.preparation_time = RecipesService.shared.getPreparationTime(atIndex: indexData)
-        newFavorite.direction_url = RecipesService.shared.getDirectionUrl(atindex: indexData)
-        newFavorite.image_url = RecipesService.shared.getImageUrl(atIndex: indexData)
-        do {
-            try AppDelegate.viewContext.save()
-            print("success!")
-        }
-        catch {
-            print("Failed!")
+        if !CDRecipe.saveFavorite() {
+            print ("erreur!")
         }
     }
-
+    
     private func deleteFavorite() {
-        let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
-        request.predicate = NSPredicate(format: "direction_url = %@", directionsURL)
-        guard let recipes = try? AppDelegate.viewContext.fetch(request) else {
-            return
+        if !CDRecipe.deleteFavorite(withURL: directionsURL) {
+            print("erreur!")
         }
-        let recipeToDelete = recipes[0] as NSManagedObject
-        AppDelegate.viewContext.delete(recipeToDelete)
-        try? AppDelegate.viewContext.save()
     }
 }

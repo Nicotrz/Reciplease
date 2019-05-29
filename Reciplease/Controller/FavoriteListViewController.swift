@@ -22,10 +22,10 @@ class FavoriteListViewController: UIViewController, UITableViewDataSource, UITab
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultSearchCell", for: indexPath) as? ResultSearchTableViewCell else {
                 return UITableViewCell()
             }
-            let title = CDRecipe.all[indexPath.row].name!
-            let ingredients = CDRecipe.all[indexPath.row].ingredients_list!
-            let preparationTime = CDRecipe.all[indexPath.row].preparation_time!
-            let imageUrl = CDRecipe.all[indexPath.row].image_url!
+            let title = CDRecipe.getTitle(atIndex: indexPath.row)
+            let ingredients = CDRecipe.getIngredients(atIndex: indexPath.row)
+            let preparationTime = CDRecipe.getPreparationTime(atIndex: indexPath.row)
+            let imageUrl = CDRecipe.getImageURL(atIndex: indexPath.row)
             cell.configure(title: title , detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl)
             return cell
     }
@@ -35,7 +35,7 @@ class FavoriteListViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CDRecipe.all.count
+        return CDRecipe.numberOfRecords
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

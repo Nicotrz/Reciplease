@@ -21,6 +21,7 @@ class ResultSearchTableViewCell: UITableViewCell {
         resultPicture.image = nil
         super.prepareForReuse()
     }
+
     func configure(title: String, detail: String, preparationTime: String, imageUrl: String) {
         titleLabel.text = title
         detailLabel.text = detail
