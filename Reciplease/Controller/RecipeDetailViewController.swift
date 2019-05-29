@@ -47,6 +47,9 @@ class RecipeDetailViewController: UIViewController {
     @IBAction func makeFavorite(_ sender: Any) {
         changeImageStatus()
         favorite = !favorite
+        if favorite {
+            saveFavorite()
+        }
     }
 
     @IBAction func getDirection(_ sender: Any) {
@@ -63,6 +66,12 @@ class RecipeDetailViewController: UIViewController {
         newFavorite.preparation_time = RecipesService.shared.getPreparationTime(atIndex: indexData)
         newFavorite.direction_url = RecipesService.shared.getDirectionUrl(atindex: indexData)
         newFavorite.image_url = RecipesService.shared.getImageUrl(atIndex: indexData)
-        try? AppDelegate.viewContext.save()
+        do {
+            try AppDelegate.viewContext.save()
+            print("success!")
+        }
+        catch {
+            print("Failed!")
+        }
     }
 }

@@ -35,7 +35,7 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+            return 2
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,9 +48,9 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        RecipesService.shared.selectedRow = indexPath.row
-        performSegue(withIdentifier: "loadDetail", sender: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
+            RecipesService.shared.selectedRow = indexPath.row
+            performSegue(withIdentifier: "loadDetail", sender: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
