@@ -575,7 +575,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="Cks-Q5-zI6"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="CC9-KJ-4T6" id="gA4-RC-rwI"/>
+                        <outlet property="tableView" destination="CC9-KJ-4T6" id="9fF-V9-31Z"/>
                         <segue destination="4f8-5y-m7v" kind="show" identifier="loadDetail" id="oUK-AI-wWH"/>
                     </connections>
                 </viewController>

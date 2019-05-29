@@ -11,15 +11,20 @@ import UIKit
 class FavoriteListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        RecipesService.shared.doesUserLoadData = false
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultSearchCell", for: indexPath) as? ResultSearchTableViewCell else {
                 return UITableViewCell()
             }
-            let title = "title"
-            let ingredients = "ingredients"
-            let preparationTime = "-'"
-            let imageUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+            let title = CDRecipe.all[indexPath.row].name!
+            let ingredients = CDRecipe.all[indexPath.row].ingredients_list!
+            let preparationTime = CDRecipe.all[indexPath.row].preparation_time!
+            let imageUrl = CDRecipe.all[indexPath.row].image_url!
             cell.configure(title: title , detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl)
             return cell
     }
@@ -29,11 +34,12 @@ class FavoriteListViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return CDRecipe.all.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "loadDetail", sender: nil)
+        CDRecipe.selectedRow = indexPath.row
+        performSegue(withIdentifier: "loadDetail", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

@@ -35,6 +35,8 @@ class RecipesService {
 
     private var isFetchInProgress = false
     
+    var doesUserLoadData = true
+    
     var selectedRow = 0
     
     let session = Alamofire.Session()

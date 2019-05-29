@@ -13,7 +13,12 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     var fetchingMore = false
     
     @IBOutlet weak var tableView: UITableView!
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        RecipesService.shared.doesUserLoadData = true
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ResultSearchCell", for: indexPath) as? ResultSearchTableViewCell else {

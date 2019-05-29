@@ -23,8 +23,20 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
+        if RecipesService.shared.doesUserLoadData {
         loadData()
+        } else {
+            loadDataFromCD()
+        }
+        checkFavoriteStatus()
         super.viewWillAppear(animated)
+    }
+
+    private func checkFavoriteStatus() {
+        if CDRecipe.recipeAlreadyAFavorite(withURL: directionsURL) {
+            favorite = true
+            changeImageStatus()
+        }
     }
     
     private func loadData() {
@@ -36,17 +48,26 @@ class RecipeDetailViewController: UIViewController {
         illustrationImage.imageFromServerURL(urlString: RecipesService.shared.getImageUrl(atIndex: indexData), PlaceHolderImage: UIImage.init())
     }
 
+    private func loadDataFromCD() {
+       let indexData = CDRecipe.selectedRow
+        titleLabel.text = CDRecipe.all[indexData].name!
+        detailTextView.text = CDRecipe.all[indexData].ingredients_detail!
+        timeLabel.text = CDRecipe.all[indexData].preparation_time
+        directionsURL = CDRecipe.all[indexData].direction_url!
+        illustrationImage.imageFromServerURL(urlString: CDRecipe.all[indexData].image_url!, PlaceHolderImage: UIImage.init())
+    }
+
     private func changeImageStatus() {
         if favorite {
-            favIcon.image = UIImage(imageLiteralResourceName: "favEmpty")
-        } else {
             favIcon.image = UIImage(imageLiteralResourceName: "favFull")
+        } else {
+            favIcon.image = UIImage(imageLiteralResourceName: "favEmpty")
         }
     }
 
     @IBAction func makeFavorite(_ sender: Any) {
-        changeImageStatus()
         favorite = !favorite
+        changeImageStatus()
         if favorite {
             saveFavorite()
         }
