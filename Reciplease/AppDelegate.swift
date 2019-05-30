@@ -79,13 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    static func changeInterface() {
-        switch AppDelegate.currentInterface {
-        case .loading:
-            AppDelegate.currentInterface = .favorite
-        case .favorite:
-            AppDelegate.currentInterface = .loading
-        }
+    static func changeInterface(interface: CurrentInterface) {
+        AppDelegate.currentInterface = interface
     }
 
 }

@@ -14,7 +14,7 @@ class FavoriteListViewController: UIViewController, UITableViewDataSource, UITab
 
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-        RecipesService.shared.doesUserLoadData = false
+        AppDelegate.changeInterface(interface: .favorite)
         super.viewWillAppear(animated)
     }
 
@@ -42,10 +42,5 @@ class FavoriteListViewController: UIViewController, UITableViewDataSource, UITab
         CDRecipe.selectedRow = indexPath.row
         performSegue(withIdentifier: "loadDetail", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        tableView.estimatedRowHeight = 0
-        return 180
     }
 }

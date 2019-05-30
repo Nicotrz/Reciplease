@@ -14,10 +14,8 @@ class RecipeDetailViewController: UIViewController {
         didSet {
             let nameImage: String
             if favorite {
-                saveFavorite()
                 nameImage = "favFull"
             } else {
-                deleteFavorite()
                 nameImage = "favEmpty"
             }
             favIcon.image = UIImage(imageLiteralResourceName: nameImage)
@@ -52,6 +50,10 @@ class RecipeDetailViewController: UIViewController {
     
     private func loadDataFromRequest() {
         let indexData = RecipesService.shared.selectedRow
+        print("===================")
+        print("Loading Data from Request")
+        print("Selected row: \(indexData)")
+        print("===================")
         let title = RecipesService.shared.getName(atIndex: indexData)
         let detail = RecipesService.shared.getFullIngredients(atindex: indexData)
         let time = RecipesService.shared.getPreparationTime(atIndex: indexData)
@@ -62,6 +64,10 @@ class RecipeDetailViewController: UIViewController {
     
     private func loadDataFromCD() {
         let index = CDRecipe.selectedRow
+        print("===================")
+        print("Loading Data from CD")
+        print("Selected row: \(index)")
+        print("===================")
         let title = CDRecipe.getTitle(atIndex: index)
         let detail = CDRecipe.getFullIngredients(atIndex: index)
         let time = CDRecipe.getPreparationTime(atIndex: index)
@@ -80,6 +86,11 @@ class RecipeDetailViewController: UIViewController {
     
     @IBAction func makeFavorite(_ sender: Any) {
         favorite = !favorite
+        if favorite {
+            saveFavorite()
+        } else {
+            deleteFavorite()
+        }
     }
     
     @IBAction func getDirection(_ sender: Any) {
