@@ -53,4 +53,15 @@ class FavoriteListViewController: UIViewController, UITableViewDataSource, UITab
         }
         
     }
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        AppDelegate.saveCurrentState(withCoder: coder)
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        AppDelegate.restoreCurrentState(withCoder: coder)
+        super.decodeRestorableState(with: coder)
+    }
+
 }

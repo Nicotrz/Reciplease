@@ -42,7 +42,7 @@ class RecipesService {
     let session = Alamofire.Session()
 
     // The Rate object to collect current rates
-    private var recipes: Recipes?
+     private var recipes: Recipes?
 
     // Retrieve the accessKey from the keys.plist file
     // Please note: the software cannot work without it
@@ -238,5 +238,13 @@ class RecipesService {
                 callback(.networkError)
             }
         }
+    }
+    
+    func getRecipes() -> Recipes? {
+        return recipes
+    }
+
+    func setRecipes(withRecipes recipes: Recipes) {
+        self.recipes = recipes
     }
 }

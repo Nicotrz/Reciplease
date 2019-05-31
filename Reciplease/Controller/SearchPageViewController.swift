@@ -22,6 +22,7 @@ class SearchPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         loadingActivityIndicator.isHidden = true
         RecipesService.shared.resetShared()
+        refreshList()
         super.viewWillAppear(animated)
     }
     @IBAction func addIngredient(_ sender: Any) {
@@ -79,4 +80,15 @@ class SearchPageViewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        AppDelegate.saveCurrentState(withCoder: coder)
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        AppDelegate.restoreCurrentState(withCoder: coder)
+        super.decodeRestorableState(with: coder)
+    }
+
 }

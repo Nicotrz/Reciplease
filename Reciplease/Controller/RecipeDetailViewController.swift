@@ -111,25 +111,12 @@ class RecipeDetailViewController: UIViewController {
     }
 
     override func encodeRestorableState(with coder: NSCoder) {
-        let toSave: Int
-        switch AppDelegate.currentInterface {
-        case .loading:
-            toSave = RecipesService.shared.selectedRow
-        case .favorite:
-            toSave = CDRecipe.selectedRow
-        }
-        coder.encodeCInt(Int32(toSave), forKey: "SelectedRow")
+        AppDelegate.saveCurrentState(withCoder: coder)
         super.encodeRestorableState(with: coder)
     }
 
     override func decodeRestorableState(with coder: NSCoder) {
-        let restore = Int(coder.decodeInt32(forKey: "SelectedRow"))
-        switch AppDelegate.currentInterface {
-        case .loading:
-            RecipesService.shared.selectedRow = restore
-        case .favorite:
-            CDRecipe.selectedRow = restore
-        }
+        AppDelegate.restoreCurrentState(withCoder: coder)
         super.decodeRestorableState(with: coder)
     }
 }

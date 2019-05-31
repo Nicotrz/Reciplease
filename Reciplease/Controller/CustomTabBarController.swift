@@ -23,5 +23,15 @@ class CustomTabBarController: UITabBarController {
     @IBAction func changeTab(_ sender: UIButton) {
         self.selectedIndex = sender.tag
     }
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        AppDelegate.saveCurrentState(withCoder: coder)
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        AppDelegate.restoreCurrentState(withCoder: coder)
+        super.decodeRestorableState(with: coder)
+    }
 
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserIngredients {
+class UserIngredients: Codable {
 
     static var shared = UserIngredients()
 
