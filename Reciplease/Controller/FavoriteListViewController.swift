@@ -43,4 +43,14 @@ class FavoriteListViewController: UIViewController, UITableViewDataSource, UITab
         performSegue(withIdentifier: "loadDetail", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let url = CDRecipe.getDirectionsUrl(atIndex: indexPath.row)
+            if CDRecipe.deleteFavorite(withURL: url) {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }
+        
+    }
 }
