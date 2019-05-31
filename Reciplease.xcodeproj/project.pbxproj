@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0620701722A1C52B000B6C1D /* FavoriteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0620701622A1C52B000B6C1D /* FavoriteDetailsViewController.swift */; };
 		06808477229C1A5F00180BBA /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */; };
 		06808479229C593C00180BBA /* ExtensionUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06808478229C593C00180BBA /* ExtensionUIImageView.swift */; };
 		0680847B229C61E500180BBA /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0680847A229C61E500180BBA /* ExtensionString.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		04168FBA24DA05621314E461 /* Pods_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AAA1EF460078E723FF9FA8 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
+		0620701622A1C52B000B6C1D /* FavoriteDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailsViewController.swift; sourceTree = "<group>"; };
 		06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		06808478229C593C00180BBA /* ExtensionUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImageView.swift; sourceTree = "<group>"; };
 		0680847A229C61E500180BBA /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				06C52F89229485B400FE904E /* SearchPageViewController.swift */,
 				06C52F912295CF7A00FE904E /* SearchResultViewController.swift */,
 				06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */,
+				0620701622A1C52B000B6C1D /* FavoriteDetailsViewController.swift */,
 				06808480229EAB4200180BBA /* FavoriteListViewController.swift */,
 				06808484229FDDD100180BBA /* CustomTabBarController.swift */,
 			);
@@ -378,6 +381,7 @@
 				068E7F41229BE27D007EC32D /* ResultSearchTableViewCell.swift in Sources */,
 				068E7F3F22995D2C007EC32D /* Recipes.swift in Sources */,
 				06C52F922295CF7A00FE904E /* SearchResultViewController.swift in Sources */,
+				0620701722A1C52B000B6C1D /* FavoriteDetailsViewController.swift in Sources */,
 				0680847B229C61E500180BBA /* ExtensionString.swift in Sources */,
 				06C52F6B2294752000FE904E /* Reciplease.xcdatamodeld in Sources */,
 				06C52F632294752000FE904E /* AppDelegate.swift in Sources */,

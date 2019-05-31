@@ -667,7 +667,7 @@
         <!--Reciplease-->
         <scene sceneID="MOO-XL-TKQ">
             <objects>
-                <viewController storyboardIdentifier="FavoriteDetailIngredients" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4f8-5y-m7v" customClass="RecipeDetailViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteDetailIngredients" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4f8-5y-m7v" customClass="FavoriteDetailsViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zs9-80-Ape">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -728,7 +728,7 @@
                                     <color key="titleColor" red="0.95675212139999999" green="0.94116199020000002" blue="0.94117748739999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="getDirection:" destination="4f8-5y-m7v" eventType="touchUpInside" id="BRV-wB-7Rn"/>
+                                    <action selector="getDirection:" destination="4f8-5y-m7v" eventType="touchUpInside" id="yRj-vh-04J"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -756,16 +756,16 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="P1j-bj-BaC"/>
                         <barButtonItem key="rightBarButtonItem" title="Fav" image="favEmpty" id="D7p-Up-EXz">
                             <connections>
-                                <action selector="makeFavorite:" destination="4f8-5y-m7v" id="tvG-qn-GXS"/>
+                                <action selector="makeFavorite:" destination="4f8-5y-m7v" id="dKd-3C-PN9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="detailTextView" destination="mWK-KO-MQE" id="c9C-du-osF"/>
-                        <outlet property="favIcon" destination="D7p-Up-EXz" id="vZM-yp-c8n"/>
-                        <outlet property="illustrationImage" destination="ISB-2P-IF9" id="DvX-ZD-qI4"/>
-                        <outlet property="timeLabel" destination="QqQ-Iy-0uO" id="W6T-XG-9Ps"/>
-                        <outlet property="titleLabel" destination="mdd-Rw-VwZ" id="tae-aH-rvP"/>
+                        <outlet property="detailTextView" destination="mWK-KO-MQE" id="U18-ew-meR"/>
+                        <outlet property="favIcon" destination="D7p-Up-EXz" id="dxU-CF-VA9"/>
+                        <outlet property="illustrationImage" destination="ISB-2P-IF9" id="Kit-WC-sAk"/>
+                        <outlet property="timeLabel" destination="QqQ-Iy-0uO" id="jLg-kl-0t1"/>
+                        <outlet property="titleLabel" destination="mdd-Rw-VwZ" id="qhz-D6-DHW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8FG-zu-62X" userLabel="First Responder" sceneMemberID="firstResponder"/>

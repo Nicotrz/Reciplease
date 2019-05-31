@@ -8,8 +8,8 @@
 
 import UIKit
 
-class RecipeDetailViewController: UIViewController {
-
+class FavoriteDetailsViewController: UIViewController {
+    
     var favorite = false {
         didSet {
             let nameImage: String
@@ -35,32 +35,32 @@ class RecipeDetailViewController: UIViewController {
         refreshData()
         super.viewWillAppear(animated)
     }
-    
+
     private func checkFavoriteStatus() {
         if CDRecipe.recipeAlreadyAFavorite(withURL: directionsURL) {
             favorite = true
         }
     }
-
+    
     private func refreshData() {
-            loadDataFromRequest()
-            checkFavoriteStatus()
+        loadDataFromCD()
+        checkFavoriteStatus()
     }
     
-    private func loadDataFromRequest() {
-        let indexData = RecipesService.shared.selectedRow
+    private func loadDataFromCD() {
+        let index = CDRecipe.selectedRow
         print("===================")
-        print("Loading Data from Request")
-        print("Selected row: \(indexData)")
+        print("Loading Data from CD")
+        print("Selected row: \(index)")
         print("===================")
-        let title = RecipesService.shared.getName(atIndex: indexData)
-        let detail = RecipesService.shared.getFullIngredients(atindex: indexData)
-        let time = RecipesService.shared.getPreparationTime(atIndex: indexData)
-        let directionURL = RecipesService.shared.getDirectionUrl(atindex: indexData)
-        let URLImage =  RecipesService.shared.getImageUrl(atIndex: indexData)
+        let title = CDRecipe.getTitle(atIndex: index)
+        let detail = CDRecipe.getFullIngredients(atIndex: index)
+        let time = CDRecipe.getPreparationTime(atIndex: index)
+        let directionURL = CDRecipe.getDirectionsUrl(atIndex: index)
+        let URLImage = CDRecipe.getImageURL(atIndex: index)
         setInterface(title: title, detail: detail, preparationTime: time, directionUrl: directionURL, imageURL: URLImage)
     }
-        
+    
     private func setInterface(title: String, detail: String, preparationTime: String, directionUrl: String, imageURL: String) {
         titleLabel.text = title
         detailTextView.text = detail
@@ -94,12 +94,12 @@ class RecipeDetailViewController: UIViewController {
             print("erreur!")
         }
     }
-
+    
     override func encodeRestorableState(with coder: NSCoder) {
         AppDelegate.saveCurrentState(withCoder: coder)
         super.encodeRestorableState(with: coder)
     }
-
+    
     override func decodeRestorableState(with coder: NSCoder) {
         AppDelegate.restoreCurrentState(withCoder: coder)
         super.decodeRestorableState(with: coder)

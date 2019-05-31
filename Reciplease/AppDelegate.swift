@@ -13,20 +13,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    enum CurrentInterface: String, Codable {
-        case loading
-        case favorite
-    }
-
-    static var currentInterface: CurrentInterface = .loading {
-        didSet {
-            print("==================")
-            print("Current Interface a changé!")
-            print(AppDelegate.currentInterface)
-            print("==================")
-        }
-    }
     
     static var persistentContainer: NSPersistentContainer {
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
@@ -86,10 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    static func changeInterface(interface: CurrentInterface) {
-        AppDelegate.currentInterface = interface
-    }
-
     func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
         return true
     }
@@ -106,10 +88,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let defaults = UserDefaults.standard
             defaults.set(encoded, forKey: "SavedRecipes")
         }
-        if let encoded = try? encoder.encode(AppDelegate.currentInterface) {
-            let defaults = UserDefaults.standard
-            defaults.set(encoded, forKey: "SavedCurrentState")
-        }
         if let encoded = try? encoder.encode(UserIngredients.shared) {
             let defaults = UserDefaults.standard
             defaults.set(encoded, forKey: "UserIngredients")
@@ -124,12 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let decoder = JSONDecoder()
             if let loadedRecipes = try? decoder.decode(Recipes.self, from: savedRecipes) {
                 RecipesService.shared.setRecipes(withRecipes: loadedRecipes)
-            }
-        }
-        if let savedCurrentStates = defaults.object(forKey: "SavedCurrentState") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedCurrentStates = try? decoder.decode(CurrentInterface.self, from: savedCurrentStates) {
-                AppDelegate.currentInterface = loadedCurrentStates
             }
         }
         if let savedUserIngredients = defaults.object(forKey: "UserIngredients") as? Data {
