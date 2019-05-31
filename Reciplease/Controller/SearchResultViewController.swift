@@ -17,7 +17,6 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RecipesService.shared.doesUserLoadData = true
-        AppDelegate.changeInterface(interface: .loading)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

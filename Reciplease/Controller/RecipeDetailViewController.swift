@@ -31,7 +31,23 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var timeLabel: UILabel!
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        refreshData()
+        super.viewDidAppear(animated)
+    }
+
+    override func viewDidLoad() {
+        refreshData()
+        super.viewDidLoad()
+    }
+    
+    private func checkFavoriteStatus() {
+        if CDRecipe.recipeAlreadyAFavorite(withURL: directionsURL) {
+            favorite = true
+        }
+    }
+
+    private func refreshData() {
         switch AppDelegate.currentInterface {
         case .loading:
             loadDataFromRequest()
@@ -39,13 +55,6 @@ class RecipeDetailViewController: UIViewController {
             loadDataFromCD()
         }
         checkFavoriteStatus()
-        super.viewWillAppear(animated)
-    }
-    
-    private func checkFavoriteStatus() {
-        if CDRecipe.recipeAlreadyAFavorite(withURL: directionsURL) {
-            favorite = true
-        }
     }
     
     private func loadDataFromRequest() {

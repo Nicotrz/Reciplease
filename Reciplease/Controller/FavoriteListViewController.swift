@@ -14,7 +14,6 @@ class FavoriteListViewController: UIViewController, UITableViewDataSource, UITab
 
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-        AppDelegate.changeInterface(interface: .favorite)
         super.viewWillAppear(animated)
     }
 

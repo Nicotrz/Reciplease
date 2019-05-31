@@ -19,7 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case favorite
     }
 
-    static var currentInterface: CurrentInterface = .loading
+    static var currentInterface: CurrentInterface = .loading {
+        didSet {
+            print("==================")
+            print("Current Interface a changé!")
+            print(AppDelegate.currentInterface)
+            print("==================")
+        }
+    }
     
     static var persistentContainer: NSPersistentContainer {
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer

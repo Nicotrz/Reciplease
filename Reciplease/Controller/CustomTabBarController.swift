@@ -22,6 +22,16 @@ class CustomTabBarController: UITabBarController {
     
     @IBAction func changeTab(_ sender: UIButton) {
         self.selectedIndex = sender.tag
+        switch sender.tag {
+        case 0:
+            AppDelegate.currentInterface = .loading
+            print("Loading interface")
+        case 1:
+            AppDelegate.currentInterface = .favorite
+            print("Favorite interface")
+        default:
+            break
+        }
     }
     
     override func encodeRestorableState(with coder: NSCoder) {
