@@ -13,9 +13,9 @@
         <!--Custom Tab Bar Controller-->
         <scene sceneID="Ksi-g3-d8p">
             <objects>
-                <tabBarController id="VLG-eF-fTh" customClass="CustomTabBarController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VLG-eF-fTh" customClass="CustomTabBarController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="7HE-Fc-oBZ"/>
-                    <tabBar key="tabBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wws-jR-ELa">
+                    <tabBar key="tabBar" hidden="YES" contentMode="scaleToFill" restorationIdentifier="InitialTabBar" insetsLayoutMarginsFromSafeArea="NO" id="Wws-jR-ELa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -27,7 +27,7 @@
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVs-BB-CmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="xbE-yk-4PP">
+                <view contentMode="scaleToFill" restorationIdentifier="CustomTabBar" id="xbE-yk-4PP">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -81,7 +81,7 @@
         <!--Search-->
         <scene sceneID="3sh-Mr-fzp">
             <objects>
-                <navigationController id="lfp-jg-BbN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SearchNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lfp-jg-BbN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="028-ao-gA4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kgp-jw-kun">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -110,7 +110,7 @@
         <!--Reciplease-->
         <scene sceneID="ahx-27-yDT">
             <objects>
-                <viewController id="aQ6-x4-RlJ" customClass="SearchPageViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchListIngredients" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aQ6-x4-RlJ" customClass="SearchPageViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IIb-F4-oLQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,12 +258,12 @@
         <!--Reciplease-->
         <scene sceneID="eus-Ne-e9S">
             <objects>
-                <viewController id="axp-ey-WUt" customClass="SearchResultViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchListView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="axp-ey-WUt" customClass="SearchResultViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ie1-no-wen">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GF6-ls-zUj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GF6-ls-zUj">
                                 <rect key="frame" x="0.0" y="88" width="375" height="654"/>
                                 <color key="backgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <viewLayoutGuide key="safeArea" id="1p8-Ev-mDh"/>
@@ -405,7 +405,7 @@
         <!--Reciplease-->
         <scene sceneID="jVt-T4-de6">
             <objects>
-                <viewController id="MeT-2Z-2cB" customClass="RecipeDetailViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MeT-2Z-2cB" customClass="RecipeDetailViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cjL-LD-VUd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -513,12 +513,12 @@
         <!--Reciplease-->
         <scene sceneID="N0C-mh-yJp">
             <objects>
-                <viewController id="iON-Px-MjT" customClass="FavoriteListViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iON-Px-MjT" customClass="FavoriteListViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s55-cc-wQC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CC9-KJ-4T6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FavoriteTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CC9-KJ-4T6">
                                 <rect key="frame" x="0.0" y="88" width="375" height="654"/>
                                 <color key="backgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <viewLayoutGuide key="safeArea" id="iqP-Eb-r8L"/>
@@ -638,7 +638,7 @@
         <!--Search-->
         <scene sceneID="EO2-iT-fb5">
             <objects>
-                <navigationController id="a2Y-iy-cXI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FavoriteNavController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a2Y-iy-cXI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="8Ft-ac-34q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="STK-84-377">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -667,7 +667,7 @@
         <!--Reciplease-->
         <scene sceneID="MOO-XL-TKQ">
             <objects>
-                <viewController id="4f8-5y-m7v" customClass="RecipeDetailViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteDetailIngredients" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4f8-5y-m7v" customClass="RecipeDetailViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zs9-80-Ape">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

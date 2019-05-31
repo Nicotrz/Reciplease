@@ -9,7 +9,7 @@
 import UIKit
 
 class RecipeDetailViewController: UIViewController {
-    
+
     var favorite = false {
         didSet {
             let nameImage: String
@@ -108,5 +108,28 @@ class RecipeDetailViewController: UIViewController {
         if !CDRecipe.deleteFavorite(withURL: directionsURL) {
             print("erreur!")
         }
+    }
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        let toSave: Int
+        switch AppDelegate.currentInterface {
+        case .loading:
+            toSave = RecipesService.shared.selectedRow
+        case .favorite:
+            toSave = CDRecipe.selectedRow
+        }
+        coder.encodeCInt(Int32(toSave), forKey: "SelectedRow")
+        super.encodeRestorableState(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        let restore = Int(coder.decodeInt32(forKey: "SelectedRow"))
+        switch AppDelegate.currentInterface {
+        case .loading:
+            RecipesService.shared.selectedRow = restore
+        case .favorite:
+            CDRecipe.selectedRow = restore
+        }
+        super.decodeRestorableState(with: coder)
     }
 }
