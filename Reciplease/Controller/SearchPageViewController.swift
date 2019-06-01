@@ -34,7 +34,7 @@ class SearchPageViewController: UIViewController {
             return
         }
         guard UserIngredients.shared.addIngredient(toadd: ingredientTextField.text!) else {
-            showAlertMessage(error: "Please enter one ingredient at a time")
+            showAlertMessage(error: "The text shouldn't contain any special character")
             return
         }
         ingredientTextField.text = ""

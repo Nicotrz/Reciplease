@@ -113,6 +113,7 @@ class RecipesService {
         to = from + 9
     }
 
+
     private func getRecipe(atIndex index: Int) -> Recipe? {
         guard let unwrappedReciped = recipes else {
             return nil
@@ -203,7 +204,8 @@ class RecipesService {
     private func createRequestDetail() -> String {
         var result = ""
         for ingredient in UserIngredients.shared.all {
-            result += "%20\(ingredient)"
+            let readyForRequest = getTextReadyForRequest(textToTranslate: ingredient)
+            result += "%20\(readyForRequest)"
         }
         return result
     }
@@ -265,4 +267,12 @@ class RecipesService {
     func setRecipes(withRecipes recipes: Recipes) {
         self.recipes = recipes
     }
+
+    // This function translate the text in a version suitable for an URL Query
+    // ( example: space are replaced by %20 )
+    private func getTextReadyForRequest(textToTranslate: String) -> String {
+        let resultToSend: String = textToTranslate.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        return resultToSend
+    }
+
 }

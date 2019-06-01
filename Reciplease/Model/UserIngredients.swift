@@ -44,4 +44,6 @@ class UserIngredients: Codable {
     func resetIngredients() {
         all = [String]()
     }
+
+
 }
