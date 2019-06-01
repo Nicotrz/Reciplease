@@ -41,6 +41,16 @@ class RecipesService {
     
     let session = Alamofire.Session()
 
+    private var numberOfTry = 0
+    
+    var tooMuchTry: Bool {
+        if numberOfTry >= 10 {
+            return true
+        } else {
+            return false
+        }
+    }
+
     // The Rate object to collect current rates
      private var recipes: Recipes?
 
@@ -76,10 +86,14 @@ class RecipesService {
         return resultKey
     }
 
-    var numberOfSearchResults: Int {
+    private var numberOfSearchResults: Int {
+        return recipes?.count ?? 0
+    }
+
+    var numberOfRecordsOnHit: Int {
         return recipes?.hits?.count ?? 0
     }
-    
+
     // MARK: Private methods
 
     // Creating the request from the URL with accessKey
@@ -214,13 +228,16 @@ class RecipesService {
             case let .success(value):
                 if self.recipes == nil {
                     self.recipes = value
+                    self.numberOfTry = 0
                 } else {
                     guard var originHits = self.recipes!.hits else {
                         callback(.networkError)
+                        self.numberOfTry += 1
                         return
                     }
                     guard let newHits = value.hits else {
                         callback(.networkError)
+                        self.numberOfTry += 1
                         return
                     }
                     originHits.append(contentsOf: newHits)
@@ -235,6 +252,7 @@ class RecipesService {
                 print("==========")
                 print(error)
                 print("==========")
+                self.numberOfTry += 1
                 callback(.networkError)
             }
         }

@@ -240,9 +240,12 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="GrT-ia-aGF"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="2Li-T3-iwz" id="jYq-zC-EKi"/>
+                        <outlet property="clearButton" destination="jb6-kV-RUj" id="czD-Kn-fya"/>
                         <outlet property="ingredientListTextView" destination="hKi-ne-iTQ" id="i5F-Kg-9Qc"/>
                         <outlet property="ingredientTextField" destination="TDn-3s-euc" id="uK7-EB-doN"/>
                         <outlet property="loadingActivityIndicator" destination="hN4-Nj-BSh" id="yrU-EX-N1P"/>
+                        <outlet property="searchButton" destination="SBM-nf-adw" id="doi-3m-z6R"/>
                         <segue destination="axp-ey-WUt" kind="show" identifier="loadList" id="OmM-0L-GxJ"/>
                     </connections>
                 </viewController>
@@ -275,7 +278,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zei-gn-C8k">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cooking" translatesAutoresizingMaskIntoConstraints="NO" id="Zei-gn-C8k">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                                 </imageView>
                                                 <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbP-vU-A5i">
@@ -410,7 +413,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1V3-cD-1dH">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cooking" translatesAutoresizingMaskIntoConstraints="NO" id="1V3-cD-1dH">
                                 <rect key="frame" x="0.0" y="88" width="375" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="0jb-CS-eh5"/>
@@ -776,6 +779,7 @@
     <resources>
         <image name="Line" width="2" height="52"/>
         <image name="clock" width="720" height="720"/>
+        <image name="cooking" width="324" height="155"/>
         <image name="favEmpty" width="48" height="45"/>
     </resources>
 </document>

@@ -11,12 +11,14 @@ import UIKit
 class SearchResultViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var fetchingMore = false
+    private var canFetchingMore = true
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         RecipesService.shared.doesUserLoadData = true
+        canFetchingMore = true
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,7 +47,7 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return RecipesService.shared.numberOfSearchResults
+            return RecipesService.shared.numberOfRecordsOnHit
         } else if section == 1 && fetchingMore {
             return 1
         }
@@ -67,6 +69,9 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard canFetchingMore else {
+            return
+        }
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         
@@ -87,8 +92,11 @@ class SearchResultViewController: UIViewController, UITableViewDataSource, UITab
                     print("success!")
                 case .networkError:
                     print("network error")
+                    if RecipesService.shared.tooMuchTry {
+                        self.canFetchingMore = false
+                    }
                 case .noResultFound:
-                    print("no result")
+                    self.canFetchingMore = false
                 }
                 self.fetchingMore = false
                 self.tableView.reloadData()

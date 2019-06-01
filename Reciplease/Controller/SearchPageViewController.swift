@@ -13,6 +13,9 @@ class SearchPageViewController: UIViewController {
     @IBOutlet weak var ingredientTextField: UITextField!
     @IBOutlet weak var ingredientListTextView: UITextView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
     
     override func viewDidLoad() {
         refreshList()
@@ -20,7 +23,7 @@ class SearchPageViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        loadingActivityIndicator.isHidden = true
+        setLoadingInterface(activate: false)
         RecipesService.shared.resetShared()
         refreshList()
         super.viewWillAppear(animated)
@@ -48,7 +51,7 @@ class SearchPageViewController: UIViewController {
             showAlertMessage(error: "Please type an ingredient first!")
             return
         }
-        loadingActivityIndicator.isHidden = false
+        setLoadingInterface(activate: true)
         RecipesService.shared.requestRecipes() { (response) in
             switch response {
             case .requestSuccessfull:
@@ -58,8 +61,16 @@ class SearchPageViewController: UIViewController {
             case .noResultFound:
                 self.showAlertMessage(error: "No result found")
             }
-            self.loadingActivityIndicator.isHidden = true
+            self.setLoadingInterface(activate: false)
         }
+    }
+
+    private func setLoadingInterface(activate: Bool) {
+        loadingActivityIndicator.isHidden = !activate
+        addButton.isEnabled = !activate
+        searchButton.isEnabled = !activate
+        clearButton.isEnabled = !activate
+        ingredientListTextView.isEditable = !activate
     }
 
     private func dismissKeyboard() {
