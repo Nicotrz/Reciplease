@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0620701722A1C52B000B6C1D /* FavoriteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0620701622A1C52B000B6C1D /* FavoriteDetailsViewController.swift */; };
+		0620701C22A2963E000B6C1D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0620701B22A2963E000B6C1D /* DetailViewController.swift */; };
 		06808477229C1A5F00180BBA /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */; };
 		06808479229C593C00180BBA /* ExtensionUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06808478229C593C00180BBA /* ExtensionUIImageView.swift */; };
 		0680847B229C61E500180BBA /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0680847A229C61E500180BBA /* ExtensionString.swift */; };
@@ -47,6 +48,7 @@
 		04168FBA24DA05621314E461 /* Pods_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AAA1EF460078E723FF9FA8 /* Pods-Reciplease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.release.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.release.xcconfig"; sourceTree = "<group>"; };
 		0620701622A1C52B000B6C1D /* FavoriteDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetailsViewController.swift; sourceTree = "<group>"; };
+		0620701B22A2963E000B6C1D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		06808478229C593C00180BBA /* ExtensionUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImageView.swift; sourceTree = "<group>"; };
 		0680847A229C61E500180BBA /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
@@ -98,6 +100,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0620701922A27FED000B6C1D /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				06C52F89229485B400FE904E /* SearchPageViewController.swift */,
+				06C52F912295CF7A00FE904E /* SearchResultViewController.swift */,
+				06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		0620701A22A28003000B6C1D /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				06808480229EAB4200180BBA /* FavoriteListViewController.swift */,
+				0620701622A1C52B000B6C1D /* FavoriteDetailsViewController.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 		06C52F562294752000FE904E = {
 			isa = PBXGroup;
 			children = (
@@ -170,12 +191,10 @@
 		06C52F872294763100FE904E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				06C52F89229485B400FE904E /* SearchPageViewController.swift */,
-				06C52F912295CF7A00FE904E /* SearchResultViewController.swift */,
-				06808476229C1A5F00180BBA /* RecipeDetailViewController.swift */,
-				0620701622A1C52B000B6C1D /* FavoriteDetailsViewController.swift */,
-				06808480229EAB4200180BBA /* FavoriteListViewController.swift */,
 				06808484229FDDD100180BBA /* CustomTabBarController.swift */,
+				0620701922A27FED000B6C1D /* Search */,
+				0620701A22A28003000B6C1D /* Favorite */,
+				0620701B22A2963E000B6C1D /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -371,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06808481229EAB4200180BBA /* FavoriteListViewController.swift in Sources */,
+				0620701C22A2963E000B6C1D /* DetailViewController.swift in Sources */,
 				06808479229C593C00180BBA /* ExtensionUIImageView.swift in Sources */,
 				06808485229FDDD100180BBA /* CustomTabBarController.swift in Sources */,
 				06C52F8C229489F300FE904E /* UserIngredients.swift in Sources */,

@@ -9,10 +9,10 @@
 import Foundation
 import CoreData
 
-class CDRecipe:NSManagedObject {
+class CDRecipe: NSManagedObject {
 
     static var selectedRow = 0
-    
+
     private static var all: [CDRecipe] {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         guard let recipes = try? AppDelegate.viewContext.fetch(request) else { return [] }
@@ -42,8 +42,7 @@ class CDRecipe:NSManagedObject {
         do {
             try AppDelegate.viewContext.save()
             return true
-        }
-        catch {
+        } catch {
             return false
         }
     }
@@ -59,8 +58,7 @@ class CDRecipe:NSManagedObject {
         do {
             try AppDelegate.viewContext.save()
             return true
-        }
-        catch {
+        } catch {
             return false
         }
 }

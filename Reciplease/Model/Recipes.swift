@@ -14,7 +14,7 @@ class Recipes: Codable {
     let more: Bool?
     let count: Int?
     var hits: [Hit]?
-    
+
     enum CodingKeys: String, CodingKey {
         case q
         case from
@@ -24,7 +24,7 @@ class Recipes: Codable {
         case count
         case hits
     }
-    
+
     init(q: String?, from: Int?, to: Int?, params: Params?, more: Bool?, count: Int?, hits: [Hit]?) {
         self.q = q
         self.from = from
@@ -41,13 +41,13 @@ class Hit: Codable {
     let recipe: Recipe?
     let bookmarked: Bool?
     let bought: Bool?
-    
+
     enum CodingKeys: String, CodingKey {
         case recipe
         case bookmarked
         case bought
     }
-    
+
     init(recipe: Recipe?, bookmarked: Bool?, bought: Bool?) {
         self.recipe = recipe
         self.bookmarked = bookmarked
@@ -75,7 +75,7 @@ class Recipe: Codable {
     let totalNutrients: [String: Total]?
     let totalDaily: [String: Total]?
     let digest: [Digest]?
-    
+
     enum CodingKeys: String, CodingKey {
         case uri
         case label
@@ -96,8 +96,13 @@ class Recipe: Codable {
         case totalDaily
         case digest
     }
-    
-    init(uri: String?, label: String?, image: String?, source: String?, url: String?, shareAs: String?, yield: Int?, dietLabels: [String]?, healthLabels: [String]?, cautions: [String]?, ingredientLines: [String]?, ingredients: [Ingredient]?, calories: Double?, totalWeight: Double?, totalTime: Int?, totalNutrients: [String: Total]?, totalDaily: [String: Total]?, digest: [Digest]?) {
+
+    init(
+        uri: String?, label: String?, image: String?, source: String?, url: String?,
+        shareAs: String?, yield: Int?, dietLabels: [String]?, healthLabels: [String]?,
+        cautions: [String]?, ingredientLines: [String]?, ingredients: [Ingredient]?,
+        calories: Double?, totalWeight: Double?, totalTime: Int?,
+        totalNutrients: [String: Total]?, totalDaily: [String: Total]?, digest: [Digest]?) {
         self.uri = uri
         self.label = label
         self.image = image
@@ -129,7 +134,7 @@ class Digest: Codable {
     let daily: Double?
     let unit: String?
     let sub: [Digest]?
-    
+
     enum CodingKeys: String, CodingKey {
         case label
         case tag
@@ -140,8 +145,10 @@ class Digest: Codable {
         case unit
         case sub
     }
-    
-    init(label: String?, tag: String?, schemaOrgTag: String?, total: Double?, hasRDI: Bool?, daily: Double?, unit: String?, sub: [Digest]?) {
+
+    init(
+        label: String?, tag: String?, schemaOrgTag: String?,
+        total: Double?, hasRDI: Bool?, daily: Double?, unit: String?, sub: [Digest]?) {
         self.label = label
         self.tag = tag
         self.schemaOrgTag = schemaOrgTag
@@ -157,12 +164,12 @@ class Digest: Codable {
 class Ingredient: Codable {
     let text: String?
     let weight: Double?
-    
+
     enum CodingKeys: String, CodingKey {
         case text
         case weight
     }
-    
+
     init(text: String?, weight: Double?) {
         self.text = text
         self.weight = weight
@@ -174,13 +181,13 @@ class Total: Codable {
     let label: String?
     let quantity: Double?
     let unit: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case label
         case quantity
         case unit
     }
-    
+
     init(label: String?, quantity: Double?, unit: String?) {
         self.label = label
         self.quantity = quantity
@@ -194,14 +201,14 @@ class Params: Codable {
     let q: [String]?
     let appKey: [String]?
     let appID: [String]?
-    
+
     enum CodingKeys: String, CodingKey {
         case sane
         case q
         case appKey
         case appID
     }
-    
+
     init(sane: [JSONAny]?, q: [String]?, appKey: [String]?, appID: [String]?) {
         self.sane = sane
         self.q = q
@@ -213,28 +220,27 @@ class Params: Codable {
 // MARK: - Encode/decode helpers
 
 class JSONNull: Codable, Hashable {
-    
+
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
     }
-    
+
     public var hashValue: Int {
         return 0
     }
-    
     public func hash(into hasher: inout Hasher) {
         // No-op
     }
-    
+
     public init() {}
-    
+
     public required init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if !container.decodeNil() {
             throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encodeNil()
@@ -243,38 +249,38 @@ class JSONNull: Codable, Hashable {
 
 class JSONCodingKey: CodingKey {
     let key: String
-    
+
     required init?(intValue: Int) {
         return nil
     }
-    
+
     required init?(stringValue: String) {
         key = stringValue
     }
-    
+
     var intValue: Int? {
         return nil
     }
-    
+
     var stringValue: String {
         return key
     }
 }
 
 class JSONAny: Codable {
-    
+
     let value: Any
-    
+
     static func decodingError(forCodingPath codingPath: [CodingKey]) -> DecodingError {
         let context = DecodingError.Context(codingPath: codingPath, debugDescription: "Cannot decode JSONAny")
         return DecodingError.typeMismatch(JSONAny.self, context)
     }
-    
+
     static func encodingError(forValue value: Any, codingPath: [CodingKey]) -> EncodingError {
         let context = EncodingError.Context(codingPath: codingPath, debugDescription: "Cannot encode JSONAny")
         return EncodingError.invalidValue(value, context)
     }
-    
+
     static func decode(from container: SingleValueDecodingContainer) throws -> Any {
         if let value = try? container.decode(Bool.self) {
             return value
@@ -293,7 +299,7 @@ class JSONAny: Codable {
         }
         throw decodingError(forCodingPath: container.codingPath)
     }
-    
+
     static func decode(from container: inout UnkeyedDecodingContainer) throws -> Any {
         if let value = try? container.decode(Bool.self) {
             return value
@@ -320,8 +326,9 @@ class JSONAny: Codable {
         }
         throw decodingError(forCodingPath: container.codingPath)
     }
-    
-    static func decode(from container: inout KeyedDecodingContainer<JSONCodingKey>, forKey key: JSONCodingKey) throws -> Any {
+
+    static func decode(
+        from container: inout KeyedDecodingContainer<JSONCodingKey>, forKey key: JSONCodingKey) throws -> Any {
         if let value = try? container.decode(Bool.self, forKey: key) {
             return value
         }
@@ -347,7 +354,7 @@ class JSONAny: Codable {
         }
         throw decodingError(forCodingPath: container.codingPath)
     }
-    
+
     static func decodeArray(from container: inout UnkeyedDecodingContainer) throws -> [Any] {
         var arr: [Any] = []
         while !container.isAtEnd {
@@ -356,7 +363,7 @@ class JSONAny: Codable {
         }
         return arr
     }
-    
+
     static func decodeDictionary(from container: inout KeyedDecodingContainer<JSONCodingKey>) throws -> [String: Any] {
         var dict = [String: Any]()
         for key in container.allKeys {
@@ -365,7 +372,7 @@ class JSONAny: Codable {
         }
         return dict
     }
-    
+
     static func encode(to container: inout UnkeyedEncodingContainer, array: [Any]) throws {
         for value in array {
             if let value = value as? Bool {
@@ -389,7 +396,7 @@ class JSONAny: Codable {
             }
         }
     }
-    
+
     static func encode(to container: inout KeyedEncodingContainer<JSONCodingKey>, dictionary: [String: Any]) throws {
         for (key, value) in dictionary {
             let key = JSONCodingKey(stringValue: key)!
@@ -414,7 +421,7 @@ class JSONAny: Codable {
             }
         }
     }
-    
+
     static func encode(to container: inout SingleValueEncodingContainer, value: Any) throws {
         if let value = value as? Bool {
             try container.encode(value)
@@ -430,7 +437,7 @@ class JSONAny: Codable {
             throw encodingError(forValue: value, codingPath: container.codingPath)
         }
     }
-    
+
     public required init(from decoder: Decoder) throws {
         if var arrayContainer = try? decoder.unkeyedContainer() {
             self.value = try JSONAny.decodeArray(from: &arrayContainer)
@@ -441,7 +448,7 @@ class JSONAny: Codable {
             self.value = try JSONAny.decode(from: container)
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         if let arr = self.value as? [Any] {
             var container = encoder.unkeyedContainer()

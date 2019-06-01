@@ -13,15 +13,14 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
     static var persistentContainer: NSPersistentContainer {
-        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+        return (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer ?? NSPersistentContainer()
     }
-    
+
     static var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
-    
 
     func application(
         _ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [
@@ -75,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
         return true
     }
-    
+
     func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
         return true
     }

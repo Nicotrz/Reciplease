@@ -505,7 +505,7 @@
                     <connections>
                         <outlet property="detailTextView" destination="hNQ-zN-oVd" id="keA-ow-voq"/>
                         <outlet property="favIcon" destination="UXb-BM-Pfk" id="Fvz-C3-ryh"/>
-                        <outlet property="illustrationImage" destination="1V3-cD-1dH" id="qNy-GJ-ASm"/>
+                        <outlet property="illustrationImage" destination="1V3-cD-1dH" id="sQL-04-Y5X"/>
                         <outlet property="timeLabel" destination="aua-mb-wFd" id="4Hf-EN-J9I"/>
                         <outlet property="titleLabel" destination="sUO-ZH-YvN" id="iKq-RU-N3a"/>
                     </connections>

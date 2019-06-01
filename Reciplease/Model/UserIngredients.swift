@@ -8,18 +8,31 @@
 
 import Foundation
 
+// This object is a codable so it can be saved on UserDefault
 class UserIngredients: Codable {
 
+    // MARK: Public Properties
+    
+    // Singleton property
     static var shared = UserIngredients()
 
+    // Array with all of the ingredients
     var all = [String]()
 
-    private init() {}
-
+    // Is the array empty ?
     var isEmpty: Bool {
         return all.isEmpty
     }
 
+    // MARK: Private methods
+
+    // Private init for singleton
+    private init() {}
+
+    // MARK: Public Methods
+
+    // Add a new ingredient to the array
+    // Only if it doesnt contain a special character
     func addIngredient(toadd ingredients: String ) -> Bool {
         guard !ingredients.containsSpecialCharacter else {
             return false
@@ -28,7 +41,7 @@ class UserIngredients: Codable {
         return true
     }
 
-    
+    // Get all of the ingredients on a pretty string
     func getIngredients() -> String {
         var result = ""
         guard !all.isEmpty else {
@@ -41,9 +54,9 @@ class UserIngredients: Codable {
         return result
     }
 
+    // Reset all of the object (delete everything)
     func resetIngredients() {
         all = [String]()
     }
-
 
 }

@@ -9,14 +9,16 @@
 import UIKit
 
 extension UIImageView {
-    public func imageFromServerURL(urlString: String, PlaceHolderImage:UIImage) {
-        
-        if self.image == nil{
-            self.image = PlaceHolderImage
+
+    // This function take the url from an image to show it on a UIImage Object
+    public func imageFromServerURL(urlString: String, placeHolderImage: UIImage) {
+        if self.image == nil {
+            self.image = placeHolderImage
         }
-        
-        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
-            
+
+        URLSession.shared.dataTask(
+            with: NSURL(string: urlString)! as URL, completionHandler: { (data, _, error) -> Void in
+
             if error != nil {
                 print(error ?? "No Error")
                 return
@@ -25,8 +27,8 @@ extension UIImageView {
                 let image = UIImage(data: data!)
                 self.image = image
             })
-            
+
         }).resume()
     }
-    
+
 }
