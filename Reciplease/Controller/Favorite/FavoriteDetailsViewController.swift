@@ -27,11 +27,11 @@ class FavoriteDetailsViewController: DetailViewController {
     }
 
     override func deleteFavorite() {
-        CDRecipe.deleteFavorite(atIndex: indexData)
+        CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: indexData)
     }
 
     override func checkFavoriteStatus() {
-        if CDRecipe.recipeAlreadyAFavorite(fromOrigin: .favorite, fromIndex: indexData) {
+        if CDRecipe.recipeAlreadyAFavorite(fromOrigin: .favorite, withURL: directionsURL) {
             favorite = true
         } else {
             favorite = false

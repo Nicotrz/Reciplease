@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
     }
     
     // The Direction URL serve as an ID
-    private var directionsURL = "http://www.google.com"
+    var directionsURL = "http://www.google.com"
 
     // MARK: Public Properties:
 
@@ -43,9 +43,13 @@ class DetailViewController: UIViewController {
     
     // MARK: View Methods
     
+    override func viewDidLoad() {
+        refreshData()
+        super.viewDidLoad()
+    }
     // When the view will appear, we set the datas
     override func viewWillAppear(_ animated: Bool) {
-        refreshData()
+        checkFavoriteStatus()
         super.viewWillAppear(animated)
     }
 

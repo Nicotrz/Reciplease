@@ -50,15 +50,7 @@ class CDRecipe: NSManagedObject {
     }
 
     // Is the recipe with the url already a favorite?
-    static func recipeAlreadyAFavorite(fromOrigin origin: OriginList, fromIndex index: Int) -> Bool {
-        let URL: String
-        switch origin {
-        case .favorite:
-            URL = CDRecipe.getDirectionsUrl(atIndex: index)
-        case .search:
-            URL = RecipesService.shared.getDirectionUrl(atindex: index)
-            
-        }
+    static func recipeAlreadyAFavorite(fromOrigin origin: OriginList, withURL URL: String) -> Bool {
         for recipe in CDRecipe.all where recipe.direction_url! == URL {
             return true
         }
@@ -83,9 +75,15 @@ class CDRecipe: NSManagedObject {
     }
 
     // Delete a favorite with index from CoreData and send back false in case of error
-    static func deleteFavorite(atIndex index: Int ) {
+    static func deleteFavorite(fromOrigin origin: OriginList, atIndex index: Int ) {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
-        let URL = getDirectionsUrl(atIndex: index)
+        let URL: String
+        switch origin {
+        case .favorite:
+            URL = CDRecipe.getDirectionsUrl(atIndex: index)
+        case .search:
+            URL = RecipesService.shared.getDirectionUrl(atindex: index)
+        }
         request.predicate = NSPredicate(format: "direction_url = %@", URL)
         guard let recipes = try? AppDelegate.viewContext.fetch(request) else {
             return

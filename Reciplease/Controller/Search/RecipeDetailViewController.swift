@@ -23,21 +23,21 @@ class RecipeDetailViewController: DetailViewController {
     }
 
     override func saveFavorite() {
-        favIcon.isEnabled = false
+      //  favIcon.isEnabled = false
         CDRecipe.saveFavorite(fromOrigin: .search)
     }
 
     override func deleteFavorite() {
-        CDRecipe.deleteFavorite(atIndex: indexData)
+        CDRecipe.deleteFavorite(fromOrigin: .search, atIndex: indexData)
     }
 
     override func checkFavoriteStatus() {
-        if CDRecipe.recipeAlreadyAFavorite(fromOrigin: .search, fromIndex: indexData) {
+        if CDRecipe.recipeAlreadyAFavorite(fromOrigin: .search, withURL: directionsURL ) {
             favorite = true
-            favIcon.isEnabled = false
+          //  favIcon.isEnabled = false
         } else {
             favorite = false
-            favIcon.isEnabled = true
+           // favIcon.isEnabled = true
         }
     }
 
