@@ -82,7 +82,7 @@ class CDRecipe: NSManagedObject {
         let tampon = 99999
         updateIndex(oldValue: fromValue, newValue: tampon)
         if toValue < fromValue {
-            for index in toValue...fromValue - 1 {
+            for index in (toValue...fromValue - 1).reversed() {
                 updateIndex(oldValue: index, newValue: index + 1)
             }
         } else if toValue > fromValue {

@@ -129,7 +129,6 @@ extension FavoriteListViewController: UITableViewDataSource, UITableViewDelegate
         print("From \(sourceIndexPath.row) - To: \(destinationIndexPath.row)")
         print("==================")
         CDRecipe.setNewOrder(fromValue: sourceIndexPath.row, toValue: destinationIndexPath.row)
-        tableView.reloadData()
     }
     
 }
