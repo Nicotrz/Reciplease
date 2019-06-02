@@ -12,7 +12,7 @@ class FavoriteDetailsViewController: DetailViewController {
     
     // Get all of the informations from CD and send them to the interface
     override func loadData() {
-        let indexData = CDRecipe.selectedRow
+        indexData = CDRecipe.selectedRow
         let title = CDRecipe.getTitle(atIndex: indexData)
         let detail = CDRecipe.getFullIngredients(atIndex: indexData)
         let time = CDRecipe.getPreparationTime(atIndex: indexData)
@@ -21,5 +21,20 @@ class FavoriteDetailsViewController: DetailViewController {
         setInterface(
             title: title, detail: detail, preparationTime: time, directionUrl: directionURL, imageURL: URLImage)
     }
-    
+
+    override func saveFavorite() {
+        CDRecipe.saveFavorite(fromOrigin: .favorite)
+    }
+
+    override func deleteFavorite() {
+        CDRecipe.deleteFavorite(atIndex: indexData)
+    }
+
+    override func checkFavoriteStatus() {
+        if CDRecipe.recipeAlreadyAFavorite(fromOrigin: .favorite, fromIndex: indexData) {
+            favorite = true
+        } else {
+            favorite = false
+        }
+    }
 }

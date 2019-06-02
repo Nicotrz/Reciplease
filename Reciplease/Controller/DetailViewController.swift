@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     // MARK: Private Properties
     
     // Favorite Property set automatically the associated image
-    private var favorite = false {
+    var favorite = false {
         didSet {
             let nameImage: String
             if favorite {
@@ -48,7 +48,13 @@ class DetailViewController: UIViewController {
         refreshData()
         super.viewWillAppear(animated)
     }
-    
+
+    override func viewWillDisappear(_ animated: Bool) {
+        if CDRecipe.saveContext() {
+            print("success!")
+        }
+    }
+
     // When the user leave the app, save current State
     override func encodeRestorableState(with coder: NSCoder) {
         AppDelegate.saveCurrentState(withCoder: coder)
@@ -72,11 +78,7 @@ class DetailViewController: UIViewController {
     
     // Getting the favorite property from the CD Model with the URL Identifier
     // And use it to set the favorite property of the page
-    private func checkFavoriteStatus() {
-        if CDRecipe.recipeAlreadyAFavorite(withURL: directionsURL) {
-            favorite = true
-        }
-    }
+    func checkFavoriteStatus() {}
     
     // Get all of the informations and set them to the interface ( Override on Childs )
     func loadData() {}
@@ -93,22 +95,14 @@ class DetailViewController: UIViewController {
     
     // Trying to save the favorite from the model
     // In case of failure, show an alert message
-    private func saveFavorite() {
-        if !CDRecipe.saveFavorite() {
-            showAlertMessage(error: "Unexpected Error")
-        }
-    }
+    func saveFavorite() {}
     
     // Trying to delete the favorite from the model
     // In case of failure, show an alert message
-    private func deleteFavorite() {
-        if !CDRecipe.deleteFavorite(withURL: directionsURL) {
-            showAlertMessage(error: "Unexpected Error")
-        }
-    }
+    func deleteFavorite() {}
     
     // Show an error pop up with a "error" message
-    private func showAlertMessage(error: String) {
+    func showAlertMessage(error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alert.addAction(action)

@@ -183,7 +183,7 @@
                                     <action selector="clearList:" destination="aQ6-x4-RlJ" eventType="touchUpInside" id="StZ-bA-gef"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKi-ne-iTQ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hKi-ne-iTQ">
                                 <rect key="frame" x="20" y="270" width="335" height="400"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="900" constant="400" id="L5a-bx-y1n"/>

@@ -15,7 +15,6 @@ extension UIImageView {
         if self.image == nil {
             self.image = placeHolderImage
         }
-
         URLSession.shared.dataTask(
             with: NSURL(string: urlString)! as URL, completionHandler: { (data, _, error) -> Void in
 

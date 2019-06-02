@@ -80,8 +80,8 @@ extension FavoriteListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(
         _ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let url = CDRecipe.getDirectionsUrl(atIndex: indexPath.row)
-            if CDRecipe.deleteFavorite(withURL: url) {
+                CDRecipe.deleteFavorite(atIndex: indexPath.row)
+            if CDRecipe.saveContext() {
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
         }

@@ -23,6 +23,7 @@ class SearchPageViewController: UIViewController {
     // When the View will appear, make disappear the loading interface
     // Reset the RecipesService
     // And show the refreshed list of user ingredients
+
     override func viewWillAppear(_ animated: Bool) {
         setLoadingInterface(activate: false)
         RecipesService.shared.resetShared()
@@ -63,7 +64,7 @@ class SearchPageViewController: UIViewController {
         addButton.isEnabled = !activate
         searchButton.isEnabled = !activate
         clearButton.isEnabled = !activate
-        ingredientListTextView.isEditable = !activate
+        ingredientTextField.isEnabled = !activate
     }
 
     // Dismiss the keyboard
