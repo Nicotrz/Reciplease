@@ -79,7 +79,7 @@ class SearchPageViewController: UIViewController {
     // - Checking if the text field does not contain any special character
     // If everything is ok => send it to the shared object, reset text field and refresh the list
     @IBAction func addIngredient(_ sender: Any) {
-        guard ingredientTextField.text != "" || ingredientTextField.text != nil else {
+        guard ingredientTextField.text != "" && ingredientTextField.text != nil else {
             showAlertMessage(error: "Please type an ingredient first!")
             return
         }

@@ -186,10 +186,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hKi-ne-iTQ">
-                                <rect key="frame" x="20" y="270" width="335" height="400"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" priority="900" constant="400" id="L5a-bx-y1n"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="270" width="335" height="406"/>
                                 <string key="text">- Apple - Tomatoes
 - Curry
 - Chicken</string>
@@ -198,7 +195,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBM-nf-adw">
-                                <rect key="frame" x="20" y="680" width="335" height="42"/>
+                                <rect key="frame" x="20" y="686" width="335" height="36"/>
                                 <color key="backgroundColor" red="0.4941176471" green="0.82745098039999998" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Search for recipes">
@@ -223,7 +220,7 @@
                             <constraint firstItem="jb6-kV-RUj" firstAttribute="top" secondItem="vSM-P5-rx0" secondAttribute="bottom" constant="10" id="HQJ-Ad-778"/>
                             <constraint firstItem="hKi-ne-iTQ" firstAttribute="top" secondItem="kLw-V7-gNd" secondAttribute="bottom" constant="10" id="I7g-wP-Js0"/>
                             <constraint firstItem="jb6-kV-RUj" firstAttribute="leading" secondItem="kLw-V7-gNd" secondAttribute="trailing" constant="10" id="Jnj-Mf-YJp"/>
-                            <constraint firstItem="SBM-nf-adw" firstAttribute="top" relation="lessThanOrEqual" secondItem="hKi-ne-iTQ" secondAttribute="bottom" constant="10" id="NoX-tH-deE"/>
+                            <constraint firstItem="SBM-nf-adw" firstAttribute="top" secondItem="hKi-ne-iTQ" secondAttribute="bottom" constant="10" id="NoX-tH-deE"/>
                             <constraint firstAttribute="bottom" secondItem="SBM-nf-adw" secondAttribute="bottom" constant="90" id="PKM-94-BIj"/>
                             <constraint firstItem="kLw-V7-gNd" firstAttribute="leading" secondItem="WrV-We-TeI" secondAttribute="leading" constant="10" id="T0M-sC-2jC"/>
                             <constraint firstItem="vSM-P5-rx0" firstAttribute="trailing" secondItem="WrV-We-TeI" secondAttribute="trailing" id="U8G-xO-IAY"/>
