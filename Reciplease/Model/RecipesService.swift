@@ -26,8 +26,8 @@ class RecipesService {
     static var shared = RecipesService()
 
     // Index to build the request (from recipe indexFrom to recipe indexTo)
-    private var indexFrom = 0
-    private var indexTo = -1
+    var indexFrom = 0
+    var indexTo = -1
 
     // The URL for the request
     private var requestURL = "https://api.edamam.com/search"
@@ -86,9 +86,9 @@ class RecipesService {
     // Current Selected row on the table view
     var selectedRow = 0
 
-    // If we tried already 10 times the same request, we stop trying
+    // If we tried already 5 times the same request, we stop trying
     var tooMuchTry: Bool {
-        if numberOfTry >= 10 {
+        if numberOfTry >= 5 {
             return true
         } else {
             return false

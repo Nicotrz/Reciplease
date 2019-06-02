@@ -24,10 +24,12 @@ class CDRecipe: NSManagedObject {
     // Array with all the recipes recorded on CoreData
     private static var all: [CDRecipe] {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
+        let sort = NSSortDescriptor(key: "order", ascending: true)
+        request.sortDescriptors = [sort]
         guard let recipes = try? AppDelegate.viewContext.fetch(request) else { return [] }
         return recipes
     }
-    
+
     // MARK: Public Properties
     
     // Selected row on Favorite
@@ -50,7 +52,7 @@ class CDRecipe: NSManagedObject {
     }
 
     // Is the recipe with the url already a favorite?
-    static func recipeAlreadyAFavorite(fromOrigin origin: OriginList, withURL URL: String) -> Bool {
+    static func recipeAlreadyAFavorite(withURL URL: String) -> Bool {
         for recipe in CDRecipe.all where recipe.direction_url! == URL {
             return true
         }
@@ -59,6 +61,7 @@ class CDRecipe: NSManagedObject {
     
     // Save a new favorite on CoreData and send back false in case of error
     static func saveFavorite(fromOrigin origin: OriginList) {
+        let order = CDRecipe.all.count
         let newFavorite = CDRecipe(context: AppDelegate.viewContext)
         switch origin {
         case .favorite:
@@ -71,9 +74,49 @@ class CDRecipe: NSManagedObject {
             newFavorite.preparation_time = RecipesService.shared.getPreparationTime(atIndex: indexData)
             newFavorite.direction_url = RecipesService.shared.getDirectionUrl(atindex: indexData)
             newFavorite.image_url = RecipesService.shared.getImageUrl(atIndex: indexData)
+            newFavorite.order = Int32(order)
         }
     }
 
+    static func setNewOrder(fromValue: Int, toValue: Int) {
+        let tampon = 99999
+        updateIndex(oldValue: fromValue, newValue: tampon)
+        if toValue < fromValue {
+            for index in toValue...fromValue - 1 {
+                updateIndex(oldValue: index, newValue: index + 1)
+            }
+        } else if toValue > fromValue {
+            for index in fromValue + 1...toValue {
+                updateIndex(oldValue: index, newValue: index - 1)
+            }
+        }
+        updateIndex(oldValue: tampon, newValue: toValue)
+    }
+
+     static func updateIndex(oldValue: Int, newValue: Int) {
+        let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
+        request.predicate = NSPredicate(format: "order = %d", oldValue)
+        guard let recipes = try? AppDelegate.viewContext.fetch(request) else {
+            return
+        }
+        let recipeToUpdate = recipes[0] as NSManagedObject
+        recipeToUpdate.setValue(newValue, forKey: "order")
+        if CDRecipe.saveContext() {
+            print("=======")
+            print("Update object to move...")
+            print(oldValue)
+            print("Moved to \(newValue)")
+            print("Success!")
+            print("=======")
+        }
+    }
+
+    static func recalculateIndex() {
+        for (indexRecipe, recipe) in all.enumerated() {
+            updateIndex(oldValue: Int(recipe.order), newValue: indexRecipe)
+        }
+    }
+    
     // Delete a favorite with index from CoreData and send back false in case of error
     static func deleteFavorite(fromOrigin origin: OriginList, atIndex index: Int ) {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
@@ -97,6 +140,9 @@ class CDRecipe: NSManagedObject {
         guard let title = CDRecipe.all[index].name else {
             return ""
         }
+        print("=============")
+        print("\(title) is at index \(CDRecipe.all[index].order)")
+        print("=============")
         return title
     }
 

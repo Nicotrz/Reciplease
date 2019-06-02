@@ -13,12 +13,22 @@ class FavoriteListViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var noFavoriteView: UIView!
 
+    private var noFavoriteYet: Bool = true {
+        didSet {
+            noFavoriteView.isHidden = !noFavoriteYet
+            editButton.isEnabled = !noFavoriteYet
+        }
+    }
+    
     // MARK: View Methods
 
     // When the view will appear, we refresh the array
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+        checkNumberOfFavorites()
         super.viewWillAppear(animated)
     }
 
@@ -32,6 +42,25 @@ class FavoriteListViewController: UIViewController {
     override func decodeRestorableState(with coder: NSCoder) {
         AppDelegate.restoreCurrentState(withCoder: coder)
         super.decodeRestorableState(with: coder)
+    }
+
+    // MARK: Action
+
+    @IBAction func selectEdit(_ sender: Any) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        if tableView.isEditing {
+            editButton.title = "Done"
+        } else {
+            editButton.title = "Edit"
+        }
+    }
+
+    private func checkNumberOfFavorites() {
+        if CDRecipe.numberOfRecords == 0 {
+            noFavoriteYet = true
+        } else {
+            noFavoriteYet = false
+        }
     }
 }
 
@@ -62,10 +91,10 @@ extension FavoriteListViewController: UITableViewDataSource, UITableViewDelegate
         let ingredients = CDRecipe.getIngredients(atIndex: indexPath.row)
         let preparationTime = CDRecipe.getPreparationTime(atIndex: indexPath.row)
         let imageUrl = CDRecipe.getImageURL(atIndex: indexPath.row)
-        cell.configure(title: title, detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl)
+        cell.configure(title: title, detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl, favorite: false)
         return cell
     }
-    
+
     // When the user load the data, we save the selected row
     // And send the user to the detail view
     // Then we deselect the row
@@ -82,11 +111,25 @@ extension FavoriteListViewController: UITableViewDataSource, UITableViewDelegate
         if editingStyle == .delete {
             CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: indexPath.row)
             if CDRecipe.saveContext() {
+                CDRecipe.recalculateIndex()
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                checkNumberOfFavorites()
             }
         }
         
     }
     
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("==================")
+        print("CALLING MOVING)")
+        print("From \(sourceIndexPath.row) - To: \(destinationIndexPath.row)")
+        print("==================")
+        CDRecipe.setNewOrder(fromValue: sourceIndexPath.row, toValue: destinationIndexPath.row)
+        tableView.reloadData()
+    }
     
 }

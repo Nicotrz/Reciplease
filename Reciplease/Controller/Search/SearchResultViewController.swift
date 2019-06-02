@@ -24,6 +24,11 @@ class SearchResultViewController: UIViewController {
 
     // MARK: Override view methods
 
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        super.viewWillAppear(animated)
+    }
+
     // If the user leave the app, we save the current state
     override func encodeRestorableState(with coder: NSCoder) {
         AppDelegate.saveCurrentState(withCoder: coder)
@@ -108,7 +113,9 @@ extension SearchResultViewController: UITableViewDataSource, UITableViewDelegate
             let ingredients = RecipesService.shared.getIngredients(atindex: indexPath.row)
             let preparationTime = RecipesService.shared.getPreparationTime(atIndex: indexPath.row)
             let imageUrl = RecipesService.shared.getImageUrl(atIndex: indexPath.row)
-            cell.configure(title: title, detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl)
+            let directionUrl = RecipesService.shared.getDirectionUrl(atindex: indexPath.row)
+            let favorite = CDRecipe.recipeAlreadyAFavorite(withURL: directionUrl)
+            cell.configure(title: title, detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl, favorite: favorite)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(

@@ -22,6 +22,8 @@
                     </tabBar>
                     <connections>
                         <outlet property="customTabBarView" destination="xbE-yk-4PP" id="rG3-DS-alo"/>
+                        <outlet property="favoriteButton" destination="930-e8-EjU" id="pbk-7J-CHR"/>
+                        <outlet property="searchButton" destination="tC6-fG-W8c" id="ZAm-OC-dZO"/>
                         <segue destination="lfp-jg-BbN" kind="relationship" relationship="viewControllers" id="bFr-7e-TRk"/>
                         <segue destination="a2Y-iy-cXI" kind="relationship" relationship="viewControllers" id="ZMv-Lf-2vD"/>
                     </connections>
@@ -50,7 +52,7 @@
                                         <action selector="changeTab:" destination="VLG-eF-fTh" eventType="touchUpInside" id="9lA-St-l3n"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="930-e8-EjU">
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="930-e8-EjU">
                                     <rect key="frame" x="133" y="12.666666666666664" width="107" height="45"/>
                                     <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="30"/>
                                     <state key="normal" title="Favorite">
@@ -331,6 +333,13 @@
                                                         <constraint firstItem="vcF-iP-r6p" firstAttribute="leading" secondItem="cgU-rq-5J9" secondAttribute="trailing" constant="5" id="oAX-cC-pHl"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favFull" translatesAutoresizingMaskIntoConstraints="NO" id="en9-BM-e5c">
+                                                    <rect key="frame" x="15" y="11" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="C36-MB-dBG"/>
+                                                        <constraint firstAttribute="width" constant="30" id="p2c-uM-JMV"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Zei-gn-C8k" firstAttribute="top" secondItem="QFT-i5-4uv" secondAttribute="top" id="13f-be-uWh"/>
@@ -340,6 +349,8 @@
                                                 <constraint firstAttribute="bottom" secondItem="Zei-gn-C8k" secondAttribute="bottom" id="MI2-aQ-GV0"/>
                                                 <constraint firstItem="qbP-vU-A5i" firstAttribute="leading" secondItem="QFT-i5-4uv" secondAttribute="leading" id="RqR-XP-Snt"/>
                                                 <constraint firstItem="nfc-uS-lhM" firstAttribute="top" secondItem="QFT-i5-4uv" secondAttribute="topMargin" constant="5" id="WLG-my-mLN"/>
+                                                <constraint firstItem="en9-BM-e5c" firstAttribute="leading" secondItem="QFT-i5-4uv" secondAttribute="leadingMargin" id="Xfv-X3-YWL"/>
+                                                <constraint firstItem="en9-BM-e5c" firstAttribute="top" secondItem="QFT-i5-4uv" secondAttribute="topMargin" id="ZFg-1Z-SQU"/>
                                                 <constraint firstItem="qbP-vU-A5i" firstAttribute="top" secondItem="zVH-k0-DoM" secondAttribute="top" id="alM-Tu-IW9"/>
                                                 <constraint firstItem="Zei-gn-C8k" firstAttribute="height" secondItem="QFT-i5-4uv" secondAttribute="height" id="cAJ-5I-eFA"/>
                                                 <constraint firstItem="Zei-gn-C8k" firstAttribute="leading" secondItem="QFT-i5-4uv" secondAttribute="leading" id="gDz-G7-fGd"/>
@@ -351,6 +362,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="detailLabel" destination="f9K-vq-vR5" id="bWn-sD-COx"/>
+                                            <outlet property="favoriteIcon" destination="en9-BM-e5c" id="YxT-Y7-ngM"/>
                                             <outlet property="preparationTimeLabel" destination="cgU-rq-5J9" id="j8C-lH-XNR"/>
                                             <outlet property="resultPicture" destination="Zei-gn-C8k" id="LnO-nh-Pr9"/>
                                             <outlet property="titleLabel" destination="Pu8-Yw-izv" id="h6X-2R-Go9"/>
@@ -526,6 +538,9 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="654"/>
                                 <color key="backgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <viewLayoutGuide key="safeArea" id="iqP-Eb-r8L"/>
+                                <color key="separatorColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexBackgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultSearchCell" rowHeight="180" id="XUx-Bo-Q3V" customClass="ResultSearchTableViewCell" customModule="Reciplease" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="180"/>
@@ -536,6 +551,13 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xcj-LF-JVZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                                </imageView>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favFull" translatesAutoresizingMaskIntoConstraints="NO" id="xWc-K4-asF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Irb-ZI-dfL"/>
+                                                        <constraint firstAttribute="width" constant="30" id="VNc-nK-R9z"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgA-62-kCD">
                                                     <rect key="frame" x="0.0" y="131" width="375" height="49"/>
@@ -600,11 +622,15 @@
                                                 <constraint firstItem="xcj-LF-JVZ" firstAttribute="height" secondItem="SFH-FJ-0Km" secondAttribute="height" id="ftc-uU-Nf5"/>
                                                 <constraint firstItem="RgA-62-kCD" firstAttribute="top" secondItem="QmC-9H-ttg" secondAttribute="top" id="gQW-a2-EbK"/>
                                                 <constraint firstItem="8Ae-8z-Npn" firstAttribute="trailing" secondItem="SFH-FJ-0Km" secondAttribute="trailingMargin" constant="5" id="rxY-lB-y1k"/>
+                                                <constraint firstItem="xWc-K4-asF" firstAttribute="leading" secondItem="SFH-FJ-0Km" secondAttribute="leading" id="uYT-zB-9Je"/>
                                                 <constraint firstItem="QmC-9H-ttg" firstAttribute="leading" secondItem="SFH-FJ-0Km" secondAttribute="leading" constant="5" id="usN-wj-6yU"/>
+                                                <constraint firstItem="xWc-K4-asF" firstAttribute="top" secondItem="SFH-FJ-0Km" secondAttribute="top" id="zmr-w5-WyZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <outlet property="detailLabel" destination="221-qy-NcG" id="6TM-Qu-UxQ"/>
+                                            <outlet property="favoriteIcon" destination="xWc-K4-asF" id="ONP-3x-WOo"/>
                                             <outlet property="preparationTimeLabel" destination="zpO-AW-BC0" id="XsX-tk-JMz"/>
                                             <outlet property="resultPicture" destination="xcj-LF-JVZ" id="ax1-jE-Nqe"/>
                                             <outlet property="titleLabel" destination="2wg-GT-hKK" id="N7o-Hc-fh2"/>
@@ -616,28 +642,65 @@
                                     <outlet property="delegate" destination="iON-Px-MjT" id="Nbk-Ro-Vdj"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8R-Sy-sCK">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Favorite Yet ?!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbl-BK-q2a">
+                                        <rect key="frame" x="123" y="30" width="129" height="27.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <color key="textColor" red="0.95675212139999999" green="0.94116199020000002" blue="0.94117748739999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add a new favorite, search for a recipe on the search bar, then add any recipe to your favorites!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgW-Og-goJ">
+                                        <rect key="frame" x="20" y="279.66666666666669" width="335" height="81.666666666666686"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <color key="textColor" red="0.95675212139999999" green="0.94116199020000002" blue="0.94117748739999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="sbl-BK-q2a" firstAttribute="top" secondItem="G8R-Sy-sCK" secondAttribute="top" constant="30" id="6C4-Tk-GTa"/>
+                                    <constraint firstItem="RgW-Og-goJ" firstAttribute="leading" secondItem="G8R-Sy-sCK" secondAttribute="leading" constant="20" id="Tfl-Yp-yFO"/>
+                                    <constraint firstAttribute="trailing" secondItem="RgW-Og-goJ" secondAttribute="trailing" constant="20" id="UxP-CX-LCs"/>
+                                    <constraint firstItem="sbl-BK-q2a" firstAttribute="centerX" secondItem="G8R-Sy-sCK" secondAttribute="centerX" id="lan-m4-RKp"/>
+                                    <constraint firstItem="RgW-Og-goJ" firstAttribute="centerY" secondItem="G8R-Sy-sCK" secondAttribute="centerY" id="xx1-V0-Leq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.2116484642" green="0.2000834048" blue="0.19607794279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="bdZ-4T-Xr5" firstAttribute="trailing" secondItem="G8R-Sy-sCK" secondAttribute="trailing" id="1oY-GB-8mn"/>
                             <constraint firstItem="CC9-KJ-4T6" firstAttribute="top" secondItem="bdZ-4T-Xr5" secondAttribute="top" id="MH4-m9-Mht"/>
+                            <constraint firstItem="bdZ-4T-Xr5" firstAttribute="bottom" secondItem="G8R-Sy-sCK" secondAttribute="bottom" id="Qoi-bu-kxS"/>
+                            <constraint firstItem="G8R-Sy-sCK" firstAttribute="top" secondItem="bdZ-4T-Xr5" secondAttribute="top" id="W43-uV-ls0"/>
                             <constraint firstItem="CC9-KJ-4T6" firstAttribute="leading" secondItem="bdZ-4T-Xr5" secondAttribute="leading" id="ZSn-4b-mm2"/>
                             <constraint firstItem="CC9-KJ-4T6" firstAttribute="trailing" secondItem="bdZ-4T-Xr5" secondAttribute="trailing" id="bn9-cM-xeI"/>
                             <constraint firstItem="CC9-KJ-4T6" firstAttribute="bottom" secondItem="s55-cc-wQC" secondAttribute="bottom" constant="-70" id="eWR-6m-gBc"/>
+                            <constraint firstItem="G8R-Sy-sCK" firstAttribute="leading" secondItem="bdZ-4T-Xr5" secondAttribute="leading" id="pnI-IR-5WG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bdZ-4T-Xr5"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="VrU-nQ-aez"/>
                     <navigationItem key="navigationItem" title="Reciplease" largeTitleDisplayMode="always" id="Ix6-ZS-4Zo">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Cks-Q5-zI6"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="4yI-Bn-wlO">
+                            <color key="tintColor" red="0.95675212139999999" green="0.94116199020000002" blue="0.94117748739999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="selectEdit:" destination="iON-Px-MjT" id="8OJ-by-wLY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editButton" destination="4yI-Bn-wlO" id="oFe-yW-giB"/>
+                        <outlet property="noFavoriteView" destination="G8R-Sy-sCK" id="rDG-5u-TRn"/>
                         <outlet property="tableView" destination="CC9-KJ-4T6" id="9fF-V9-31Z"/>
                         <segue destination="4f8-5y-m7v" kind="show" identifier="loadDetail" id="oUK-AI-wWH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DgY-tb-d6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="483"/>
+            <point key="canvasLocation" x="1005.6" y="482.51231527093597"/>
         </scene>
         <!--Search-->
         <scene sceneID="EO2-iT-fb5">
@@ -653,6 +716,7 @@
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="25"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" red="0.95675212139999999" green="0.94116199020000002" blue="0.94117748739999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="23"/>
@@ -781,5 +845,6 @@
         <image name="clock" width="720" height="720"/>
         <image name="cooking" width="324" height="155"/>
         <image name="favEmpty" width="48" height="45"/>
+        <image name="favFull" width="48" height="45"/>
     </resources>
 </document>

@@ -68,6 +68,7 @@ class DetailViewController: UIViewController {
     // When the user come back to the app, restore current state
     override func decodeRestorableState(with coder: NSCoder) {
         AppDelegate.restoreCurrentState(withCoder: coder)
+        refreshData()
         super.decodeRestorableState(with: coder)
     }
     
@@ -82,7 +83,14 @@ class DetailViewController: UIViewController {
     
     // Getting the favorite property from the CD Model with the URL Identifier
     // And use it to set the favorite property of the page
-    func checkFavoriteStatus() {}
+    func checkFavoriteStatus() {
+        if CDRecipe.recipeAlreadyAFavorite(withURL: directionsURL ) {
+            favorite = true
+        } else {
+            favorite = false
+        }
+    }
+
     
     // Get all of the informations and set them to the interface ( Override on Childs )
     func loadData() {}

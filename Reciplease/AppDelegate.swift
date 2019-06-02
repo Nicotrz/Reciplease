@@ -80,8 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     static func saveCurrentState(withCoder coder: NSCoder) {
-        coder.encodeCInt(Int32(RecipesService.shared.selectedRow), forKey: "SelectedRowService")
-        coder.encodeCInt(Int32(CDRecipe.selectedRow), forKey: "SelectedRowFavorites")
+        coder.encode(RecipesService.shared.selectedRow, forKey: "SelectedRowService")
+        coder.encode(CDRecipe.selectedRow, forKey: "SelectedRowFavorites")
+        coder.encode(RecipesService.shared.indexFrom, forKey: "RequestFrom")
+        coder.encode(RecipesService.shared.indexTo, forKey: "RequestTo")
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(RecipesService.shared.getRecipes()) {
             let defaults = UserDefaults.standard
@@ -95,6 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static func restoreCurrentState(withCoder coder: NSCoder) {
         RecipesService.shared.selectedRow = Int(coder.decodeInt32(forKey: "SelectedRowService"))
+        RecipesService.shared.indexFrom = Int(coder.decodeInt32(forKey: "RequestFrom"))
+        RecipesService.shared.indexTo = Int(coder.decodeInt32(forKey: "RequestTo"))
         CDRecipe.selectedRow = Int(coder.decodeInt32(forKey: "SelectedRowFavorites"))
         let defaults = UserDefaults.standard
         if let savedRecipes = defaults.object(forKey: "SavedRecipes") as? Data {

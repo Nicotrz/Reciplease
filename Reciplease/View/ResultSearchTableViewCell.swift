@@ -15,7 +15,8 @@ class ResultSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var preparationTimeLabel: UILabel!
-
+    @IBOutlet weak var favoriteIcon: UIImageView!
+    
     // MARK: View Methods
 
     // When the image is going to be reuse, we set it at nil to avoid
@@ -26,10 +27,11 @@ class ResultSearchTableViewCell: UITableViewCell {
     }
 
     // Configure the outlets with information sended
-    func configure(title: String, detail: String, preparationTime: String, imageUrl: String) {
+    func configure(title: String, detail: String, preparationTime: String, imageUrl: String, favorite: Bool) {
         titleLabel.text = title
         detailLabel.text = detail
         preparationTimeLabel.text = preparationTime
         resultPicture.imageFromServerURL(urlString: imageUrl, placeHolderImage: UIImage.init() )
+        favoriteIcon.isHidden = !favorite
     }
 }

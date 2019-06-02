@@ -6,9 +6,10 @@
         <attribute name="ingredients_detail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ingredients_list" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="preparation_time" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CDRecipe" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="CDRecipe" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
