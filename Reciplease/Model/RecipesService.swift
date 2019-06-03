@@ -26,8 +26,8 @@ class RecipesService {
     static var shared = RecipesService()
 
     // Index to build the request (from recipe indexFrom to recipe indexTo)
-    var indexFrom = 0
-    var indexTo = -1
+    private var indexFrom = 0
+    private var indexTo = -1
 
     // The URL for the request
     private var requestURL = "https://api.edamam.com/search"
@@ -179,7 +179,7 @@ class RecipesService {
     }
 
     // Get ingredients for horizontal list at a precise index
-    func getIngredients(atindex index: Int) -> String {
+    func getIngredients(atIndex index: Int) -> String {
         guard let recipe = getRecipe(atIndex: index) else {
             return ""
         }
@@ -194,7 +194,7 @@ class RecipesService {
     }
 
     // Get ingredients as a vertical list at a precise index
-    func getFullIngredients(atindex index: Int) -> String {
+    func getFullIngredients(atIndex index: Int) -> String {
         guard let recipe = getRecipe(atIndex: index) else {
             return ""
         }
@@ -212,7 +212,7 @@ class RecipesService {
     }
 
     // Get the direction URL at a precise index
-    func getDirectionUrl(atindex index: Int) -> String {
+    func getDirectionUrl(atIndex index: Int) -> String {
         guard let recipe = getRecipe(atIndex: index) else {
             return ""
             }
@@ -222,16 +222,31 @@ class RecipesService {
         return url
     }
 
+    // Get the From and To like an array of Int
+    func getFromAndTo() -> [Int] {
+        return [indexFrom, indexTo]
+    }
 
+
+    // Set the from and to
+    func setFromAndTo(from indexFrom: Int, to indexTo: Int) {
+        self.indexFrom = indexFrom
+        self.indexTo = indexTo
+    }
+    
     // Request the recipes. We need a closure on argument with:
     // - Type of error for result purpose
     // This method send the result to the recipes variable
     func requestRecipes(callback: @escaping (ErrorCase) -> Void) {
+        print("==============")
+        print(numberOfTry)
+        print("==============")
         // Checking that we are not already retrieving data
         guard !isFetchInProgress else {
             return
         }
         isFetchInProgress = true
+        numberOfTry += 1
         // Create the request
         let request = createRequestDetail()
         recalculateFromTo()
@@ -244,17 +259,14 @@ class RecipesService {
                 // If we didn't set the result yet, create the recipe object
                 if self.recipes == nil {
                     self.recipes = value
-                    self.numberOfTry = 0
                 } else {
                     // We safely unwrapped the hits, and add them to the already existing array of hit
                     guard var originHits = self.recipes!.hits else {
                         callback(.networkError)
-                        self.numberOfTry += 1
                         return
                     }
                     guard let newHits = value.hits else {
                         callback(.networkError)
-                        self.numberOfTry += 1
                         return
                     }
                     originHits.append(contentsOf: newHits)
@@ -268,9 +280,10 @@ class RecipesService {
                 }
                 // Everything is fine. The request was successfull
                 callback(.requestSuccessfull)
+                print("success!")
+                self.numberOfTry = 0
             case .failure(_):
                 // Fail. Sending back networkError and increment numberOfTry
-                self.numberOfTry += 1
                 callback(.networkError)
             }
         }

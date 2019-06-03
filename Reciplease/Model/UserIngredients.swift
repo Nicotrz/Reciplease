@@ -30,7 +30,7 @@ class UserIngredients: Codable {
     private init() {}
 
     // MARK: Public Methods
-
+    
     // Add a new ingredient to the array
     // Only if it doesnt contain a special character
     func addIngredient(toadd ingredients: String ) -> Bool {

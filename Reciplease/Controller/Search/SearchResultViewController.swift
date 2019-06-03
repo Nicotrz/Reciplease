@@ -110,10 +110,10 @@ extension SearchResultViewController: UITableViewDataSource, UITableViewDelegate
                     return UITableViewCell()
             }
             let title = RecipesService.shared.getName(atIndex: indexPath.row)
-            let ingredients = RecipesService.shared.getIngredients(atindex: indexPath.row)
+            let ingredients = RecipesService.shared.getIngredients(atIndex: indexPath.row)
             let preparationTime = RecipesService.shared.getPreparationTime(atIndex: indexPath.row)
             let imageUrl = RecipesService.shared.getImageUrl(atIndex: indexPath.row)
-            let directionUrl = RecipesService.shared.getDirectionUrl(atindex: indexPath.row)
+            let directionUrl = RecipesService.shared.getDirectionUrl(atIndex: indexPath.row)
             let favorite = CDRecipe.recipeAlreadyAFavorite(withURL: directionUrl)
             cell.configure(title: title, detail: ingredients, preparationTime: preparationTime, imageUrl: imageUrl, favorite: favorite)
             return cell

@@ -64,10 +64,10 @@ class CDRecipe: NSManagedObject {
         case .search:
             let indexData = RecipesService.shared.selectedRow
             newFavorite.name = RecipesService.shared.getName(atIndex: indexData)
-            newFavorite.ingredients_detail = RecipesService.shared.getFullIngredients(atindex: indexData)
-            newFavorite.ingredients_list = RecipesService.shared.getIngredients(atindex: indexData)
+            newFavorite.ingredients_detail = RecipesService.shared.getFullIngredients(atIndex: indexData)
+            newFavorite.ingredients_list = RecipesService.shared.getIngredients(atIndex: indexData)
             newFavorite.preparation_time = RecipesService.shared.getPreparationTime(atIndex: indexData)
-            newFavorite.direction_url = RecipesService.shared.getDirectionUrl(atindex: indexData)
+            newFavorite.direction_url = RecipesService.shared.getDirectionUrl(atIndex: indexData)
             newFavorite.image_url = RecipesService.shared.getImageUrl(atIndex: indexData)
             newFavorite.order = Int32(order)
         }
@@ -116,7 +116,7 @@ class CDRecipe: NSManagedObject {
         case .favorite:
             URL = CDRecipe.getDirectionsUrl(atIndex: index)
         case .search:
-            URL = RecipesService.shared.getDirectionUrl(atindex: index)
+            URL = RecipesService.shared.getDirectionUrl(atIndex: index)
         }
         request.predicate = NSPredicate(format: "direction_url = %@", URL)
         guard let recipes = try? AppDelegate.viewContext.fetch(request) else {
@@ -131,9 +131,6 @@ class CDRecipe: NSManagedObject {
         guard let title = CDRecipe.all[index].name else {
             return ""
         }
-        print("=============")
-        print("\(title) is at index \(CDRecipe.all[index].order)")
-        print("=============")
         return title
     }
 

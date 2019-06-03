@@ -14,9 +14,9 @@ class RecipeDetailViewController: DetailViewController {
     override func loadData() {
         indexData = RecipesService.shared.selectedRow
         let title = RecipesService.shared.getName(atIndex: indexData)
-        let detail = RecipesService.shared.getFullIngredients(atindex: indexData)
+        let detail = RecipesService.shared.getFullIngredients(atIndex: indexData)
         let time = RecipesService.shared.getPreparationTime(atIndex: indexData)
-        let directionURL = RecipesService.shared.getDirectionUrl(atindex: indexData)
+        let directionURL = RecipesService.shared.getDirectionUrl(atIndex: indexData)
         let URLImage =  RecipesService.shared.getImageUrl(atIndex: indexData)
         setInterface(
             title: title, detail: detail, preparationTime: time, directionUrl: directionURL, imageURL: URLImage)
