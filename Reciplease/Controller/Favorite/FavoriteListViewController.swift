@@ -16,6 +16,10 @@ class FavoriteListViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var noFavoriteView: UIView!
 
+    // MARK: Private properties
+    
+    // If there is no favorite, we show the noFavoriteView
+    // And disable the edit button
     private var noFavoriteYet: Bool = true {
         didSet {
             noFavoriteView.isHidden = !noFavoriteYet
@@ -25,7 +29,7 @@ class FavoriteListViewController: UIViewController {
     
     // MARK: View Methods
 
-    // When the view will appear, we refresh the array
+    // When the view will appear, we refresh the array and check the number of favorites to display
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
         checkNumberOfFavorites()
@@ -46,6 +50,7 @@ class FavoriteListViewController: UIViewController {
 
     // MARK: Action
 
+    // The user pressed on the "Edit" button. We change the label and put the tableView on editing mode
     @IBAction func selectEdit(_ sender: Any) {
         tableView.setEditing(!tableView.isEditing, animated: true)
         if tableView.isEditing {
@@ -110,24 +115,21 @@ extension FavoriteListViewController: UITableViewDataSource, UITableViewDelegate
         _ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: indexPath.row)
-            if CDRecipe.saveContext() {
-                CDRecipe.recalculateIndex()
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                checkNumberOfFavorites()
-            }
+            CDRecipe.saveContext()
+            CDRecipe.recalculateIndex()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            checkNumberOfFavorites()
         }
         
     }
     
+    // The user can move the rows on editing mode
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
+    // When the user moves  row from sourceIndexPath to destinationIndexPath, we warned the CD Model about it
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("==================")
-        print("CALLING MOVING)")
-        print("From \(sourceIndexPath.row) - To: \(destinationIndexPath.row)")
-        print("==================")
         CDRecipe.setNewOrder(fromValue: sourceIndexPath.row, toValue: destinationIndexPath.row)
     }
     

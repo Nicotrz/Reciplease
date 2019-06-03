@@ -42,13 +42,8 @@ class CDRecipe: NSManagedObject {
 
     // MARK: Public Methods
 
-    static func saveContext() -> Bool {
-        do {
-            try AppDelegate.viewContext.save()
-            return true
-        } catch {
-            return false
-        }
+    static func saveContext() {
+            try? AppDelegate.viewContext.save()
     }
 
     // Is the recipe with the url already a favorite?
@@ -78,6 +73,7 @@ class CDRecipe: NSManagedObject {
         }
     }
 
+    // Re-organize the array when an element is moved from fromValue to toValue
     static func setNewOrder(fromValue: Int, toValue: Int) {
         let tampon = 99999
         updateIndex(oldValue: fromValue, newValue: tampon)
@@ -93,6 +89,7 @@ class CDRecipe: NSManagedObject {
         updateIndex(oldValue: tampon, newValue: toValue)
     }
 
+    // Give to the element at index oldValue the value newValue
      static func updateIndex(oldValue: Int, newValue: Int) {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         request.predicate = NSPredicate(format: "order = %d", oldValue)
@@ -101,16 +98,10 @@ class CDRecipe: NSManagedObject {
         }
         let recipeToUpdate = recipes[0] as NSManagedObject
         recipeToUpdate.setValue(newValue, forKey: "order")
-        if CDRecipe.saveContext() {
-            print("=======")
-            print("Update object to move...")
-            print(oldValue)
-            print("Moved to \(newValue)")
-            print("Success!")
-            print("=======")
-        }
+        _ = CDRecipe.saveContext()
     }
 
+    // Recalculate the index of all of the array following the order of the array
     static func recalculateIndex() {
         for (indexRecipe, recipe) in all.enumerated() {
             updateIndex(oldValue: Int(recipe.order), newValue: indexRecipe)

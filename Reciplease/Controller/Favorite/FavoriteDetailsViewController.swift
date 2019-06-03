@@ -22,10 +22,12 @@ class FavoriteDetailsViewController: DetailViewController {
             title: title, detail: detail, preparationTime: time, directionUrl: directionURL, imageURL: URLImage)
     }
 
+    // Saving the favorite from favorite source
     override func saveFavorite() {
         CDRecipe.saveFavorite(fromOrigin: .favorite)
     }
 
+    // Delete the favorite from favorite source
     override func deleteFavorite() {
         CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: indexData)
     }

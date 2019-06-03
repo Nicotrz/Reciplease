@@ -54,9 +54,7 @@ class DetailViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        if CDRecipe.saveContext() {
-            print("success!")
-        }
+        CDRecipe.saveContext()
     }
 
     // When the user leave the app, save current State
@@ -80,6 +78,8 @@ class DetailViewController: UIViewController {
         loadData()
         checkFavoriteStatus()
     }
+    
+    // MARK: Public Methods ( so they can be called by children )
     
     // Getting the favorite property from the CD Model with the URL Identifier
     // And use it to set the favorite property of the page
@@ -105,12 +105,10 @@ class DetailViewController: UIViewController {
         illustrationImage.imageFromServerURL(urlString: imageURL, placeHolderImage: UIImage.init())
     }
     
-    // Trying to save the favorite from the model
-    // In case of failure, show an alert message
+    // Save the favorite. Method is going to be override by children
     func saveFavorite() {}
     
-    // Trying to delete the favorite from the model
-    // In case of failure, show an alert message
+    // Delete the favorite. Method is going to be override by children
     func deleteFavorite() {}
     
     // Show an error pop up with a "error" message
@@ -123,7 +121,7 @@ class DetailViewController: UIViewController {
     
     // MARK: Actions
     
-    // The user press on the favorite buttoh
+    // The user press on the favorite button
     @IBAction func makeFavorite(_ sender: Any) {
         favorite = !favorite
         if favorite {

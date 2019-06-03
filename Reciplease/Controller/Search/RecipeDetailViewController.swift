@@ -22,10 +22,12 @@ class RecipeDetailViewController: DetailViewController {
             title: title, detail: detail, preparationTime: time, directionUrl: directionURL, imageURL: URLImage)
     }
 
+    // Save a new favorite ( from Search interface)
     override func saveFavorite() {
         CDRecipe.saveFavorite(fromOrigin: .search)
     }
 
+    // Delete the favorite ( from Search interface)
     override func deleteFavorite() {
         CDRecipe.deleteFavorite(fromOrigin: .search, atIndex: indexData)
     }
