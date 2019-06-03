@@ -90,9 +90,8 @@ class RecipesService {
     var tooMuchTry: Bool {
         if numberOfTry >= 5 {
             return true
-        } else {
-            return false
         }
+        return false
     }
     
     // Number of records currently on hit ( 0 if one of the object is nil )
@@ -238,9 +237,6 @@ class RecipesService {
     // - Type of error for result purpose
     // This method send the result to the recipes variable
     func requestRecipes(callback: @escaping (ErrorCase) -> Void) {
-        print("==============")
-        print(numberOfTry)
-        print("==============")
         // Checking that we are not already retrieving data
         guard !isFetchInProgress else {
             return
@@ -280,7 +276,6 @@ class RecipesService {
                 }
                 // Everything is fine. The request was successfull
                 callback(.requestSuccessfull)
-                print("success!")
                 self.numberOfTry = 0
             case .failure(_):
                 // Fail. Sending back networkError and increment numberOfTry

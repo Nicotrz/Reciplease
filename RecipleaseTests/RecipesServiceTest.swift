@@ -41,10 +41,7 @@ class RecipesServiceTest: XCTestCase {
         XCTAssert(RecipesService.shared.tooMuchTry)
     }
     
-    
-    
-    
-    
+    // Testing Valid request and response
     func testGivenAValidRequest_WhenCallingTheRequest_ResuldShouldBeValidResponse() {
         _ = UserIngredients.shared.addIngredient(toadd: "potato")
         RecipesService.shared.requestRecipes() { (response) in
@@ -58,6 +55,33 @@ class RecipesServiceTest: XCTestCase {
         }
         RecipesService.shared.requestRecipes() { (response) in
             XCTAssertEqual(response, .networkError)
+        }
+    }
+
+    func testGivenValidRecipes_WhenSetNewRecipe_TheNewOneShouldBeSet() {
+        _ = UserIngredients.shared.addIngredient(toadd: "potato")
+        var recipes: Recipes? = nil
+        RecipesService.shared.requestRecipes() { (response) in
+            XCTAssertEqual(response, .requestSuccessfull)
+            if let newRecipes = RecipesService.shared.getRecipes() {
+                recipes = newRecipes
+            }
+            RecipesService.shared.resetShared()
+            RecipesService.shared.setRecipes(withRecipes: recipes!)
+            XCTAssertNotNil(RecipesService.shared.getRecipes)
+        }
+        }
+
+    func testGivenValidRequest_WhenTestGetter_GetShouldNotBeEmpty() {
+        _ = UserIngredients.shared.addIngredient(toadd: "potato")
+        RecipesService.shared.requestRecipes() { (response) in
+            XCTAssertNotEqual(RecipesService.shared.numberOfRecordsOnHit, 0)
+            XCTAssertNotEqual(RecipesService.shared.getName(atIndex: 1), "")
+            XCTAssertNotEqual(RecipesService.shared.getPreparationTime(atIndex: 1), "")
+            XCTAssertNotEqual(RecipesService.shared.getImageUrl(atIndex: 1), "")
+            XCTAssertNotEqual(RecipesService.shared.getIngredients(atIndex: 1), "")
+            XCTAssertNotEqual(RecipesService.shared.getFullIngredients(atIndex: 1), "")
+            XCTAssertNotEqual(RecipesService.shared.getDirectionUrl(atIndex: 1), "")
         }
     }
 }
