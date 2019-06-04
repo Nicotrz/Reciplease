@@ -57,7 +57,6 @@ class RecipesService {
         guard let resultKey = dict["app_key"] as? String else {
             return ""
         }
-        print("app key: \(resultKey)")
         return resultKey
     }
     
@@ -72,7 +71,6 @@ class RecipesService {
         guard let resultKey = dict["app_id"] as? String else {
             return ""
         }
-        print("app id: \(resultKey)")
         return resultKey
     }
 

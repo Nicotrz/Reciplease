@@ -126,6 +126,22 @@ class CDRecipe: NSManagedObject {
         AppDelegate.viewContext.delete(recipeToDelete)
     }
 
+    // Delete all the content of the DB. Function used only on testing
+    static func resetAllRecords() {
+        let entity = "CDRecipe"
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        do
+        {
+            try AppDelegate.viewContext.execute(deleteRequest)
+            try AppDelegate.viewContext.save()
+        }
+        catch
+        {
+            print ("There was an error")
+        }
+    }
+
     // Get the title of the requested recipe
     static func getTitle(atIndex index: Int) -> String {
         guard let title = CDRecipe.all[index].name else {
@@ -172,5 +188,13 @@ class CDRecipe: NSManagedObject {
             return ""
         }
         return preparationTime
+    }
+
+    // Get the order of a record at URL
+    static func getOrder(atURL URL: String) -> Int {
+        for recipe in CDRecipe.all where recipe.direction_url! == URL {
+            return Int(recipe.order)
+        }
+        return 0
     }
 }
