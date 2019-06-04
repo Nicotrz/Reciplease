@@ -109,7 +109,7 @@ class CDRecipe: NSManagedObject {
     }
     
     // Delete a favorite with index from CoreData and send back false in case of error
-    static func deleteFavorite(fromOrigin origin: OriginList, atIndex index: Int ) {
+    static func deleteFavorite(fromOrigin origin: OriginList, atIndex index: Int ) -> Bool {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         let URL: String
         switch origin {
@@ -120,10 +120,11 @@ class CDRecipe: NSManagedObject {
         }
         request.predicate = NSPredicate(format: "direction_url = %@", URL)
         guard let recipes = try? AppDelegate.viewContext.fetch(request) else {
-            return
+            return false
         }
         let recipeToDelete = recipes[0] as NSManagedObject
         AppDelegate.viewContext.delete(recipeToDelete)
+        return true
     }
 
     // Delete all the content of the DB. Function used only on testing
@@ -138,7 +139,7 @@ class CDRecipe: NSManagedObject {
         }
         catch
         {
-            print ("There was an error")
+            print("Error!")
         }
     }
 

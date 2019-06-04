@@ -58,6 +58,7 @@ class CDRecipeTest: XCTestCase {
     
     // Testing add a new favorite
     func testGivenANewFavorite_WhenTesting_FavoriteIsSuccessfullySaved() {
+        XCTAssertEqual(CDRecipe.numberOfRecords, 0)
         addFavorite(fromRow: 1)
         let originURL = RecipesService.shared.getDirectionUrl(atIndex: RecipesService.shared.selectedRow)
         XCTAssertEqual(CDRecipe.numberOfRecords, 1)
@@ -82,7 +83,7 @@ class CDRecipeTest: XCTestCase {
     // Testing the delete of a record. Original order is 0 - 1 - 2 - 3 - 4
     func testGivenSomeFavorites_WhenDeleteAFavoriteAndReordering_OrderShouldStillBeCorrect() {
         let array = addSomeFavorites()
-        CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: 2)
+        XCTAssert(CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: 2))
         CDRecipe.saveContext()
         CDRecipe.recalculateIndex()
         XCTAssertEqual(CDRecipe.getOrder(atURL: array[0]), 0)
@@ -90,4 +91,23 @@ class CDRecipeTest: XCTestCase {
         XCTAssertEqual(CDRecipe.getOrder(atURL: array[3]), 2)
         XCTAssertFalse(CDRecipe.recipeAlreadyAFavorite(withURL: array[2]))
     }
+
+    func testGivenSomeFavorite_WhenAddingAndRestoreAFavorite_ThenFavoriteShouldBeRestored() {
+        let array = addSomeFavorites()
+        XCTAssert(CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: 2))
+        CDRecipe.saveFavorite(fromOrigin: .favorite)
+        CDRecipe.saveContext()
+        XCTAssertEqual(CDRecipe.numberOfRecords, array.count)
+    }
+
+    func testGivenSomeFavorites_WhenTestGetter_GetterShouldBeCorrect() {
+        addFavorite(fromRow: 0)
+        XCTAssertEqual(RecipesService.shared.getName(atIndex: 0), CDRecipe.getTitle(atIndex: 0))
+        XCTAssertEqual(RecipesService.shared.getImageUrl(atIndex: 0), CDRecipe.getImageURL(atIndex: 0))
+        XCTAssertEqual(RecipesService.shared.getIngredients(atIndex: 0), CDRecipe.getIngredients(atIndex: 0))
+        XCTAssertEqual(RecipesService.shared.getFullIngredients(atIndex: 0), CDRecipe.getFullIngredients(atIndex: 0))
+        XCTAssertEqual(RecipesService.shared.getDirectionUrl(atIndex: 0), CDRecipe.getDirectionsUrl(atIndex: 0))
+        XCTAssertEqual(RecipesService.shared.getPreparationTime(atIndex: 0), CDRecipe.getPreparationTime(atIndex: 0))
+    }
+
 }

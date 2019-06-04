@@ -51,6 +51,7 @@ class RecipesServiceTest: XCTestCase {
                 XCTAssertEqual(response, .requestSuccessfull)
                 XCTAssertEqual(RecipesService.shared.numberOfRecordsOnHit, 18)
                 XCTAssertNotNil(RecipesService.shared.getRecipes)
+                XCTAssertEqual(RecipesService.shared.getFromAndTo(), [19,27])
             }
         }
         RecipesService.shared.requestRecipes() { (response) in

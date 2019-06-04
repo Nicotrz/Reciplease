@@ -67,6 +67,15 @@ class FavoriteListViewController: UIViewController {
             noFavoriteYet = false
         }
     }
+
+    // Show an error pop up with a "error" message
+    private func showAlertMessage(error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+
 }
 
 extension FavoriteListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -114,7 +123,10 @@ extension FavoriteListViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(
         _ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: indexPath.row)
+            guard CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: indexPath.row) else {
+                showAlertMessage(error: "An unexpected error has occured!")
+                return
+            }
             CDRecipe.saveContext()
             CDRecipe.recalculateIndex()
             tableView.deleteRows(at: [indexPath], with: .automatic)

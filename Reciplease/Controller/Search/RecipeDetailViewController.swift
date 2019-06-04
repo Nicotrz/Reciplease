@@ -29,6 +29,9 @@ class RecipeDetailViewController: DetailViewController {
 
     // Delete the favorite ( from Search interface)
     override func deleteFavorite() {
-        CDRecipe.deleteFavorite(fromOrigin: .search, atIndex: indexData)
+        guard CDRecipe.deleteFavorite(fromOrigin: .search, atIndex: indexData) else {
+            showAlertMessage(error: "an Unexpected error has occured!")
+            return
+        }
     }
 }

@@ -29,6 +29,9 @@ class FavoriteDetailsViewController: DetailViewController {
 
     // Delete the favorite from favorite source
     override func deleteFavorite() {
-        CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: indexData)
+        guard CDRecipe.deleteFavorite(fromOrigin: .favorite, atIndex: indexData) else {
+            showAlertMessage(error: "An unexpected error has occured!")
+            return
+        }
     }
 }
