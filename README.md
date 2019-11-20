@@ -37,3 +37,6 @@ The used architecture is MVC. The main points of intention of this project are:
 - Custom Tab Bar (Using a UIView as a base)
 
 <img src="https://github.com/Nicotrz/Reciplease/blob/master/Capture%20d’écran%202019-11-20%20à%2022.47.38.png?raw=true" title="Reciplease" alt="Nicotrz">
+
+## Credits
+Nicolas Sommereijns - 2019
